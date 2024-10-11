@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { SplitLayout, SplitCol, View } from '@vkontakte/vkui';
+import { Epic } from '@vkontakte/vkui';
+import { useActiveVkuiLocation } from '@vkontakte/vk-mini-apps-router';
+import {EPanels} from "./consts/panels/panels";
+import {EViews} from "./consts/views/veiws";
+import {HomePanel} from "./panels/home/home";
+import {CommunityPanel} from "./panels/community/community";
+import {ProfilePanel} from "./panels/profile/profile";
 
-function App() {
-  const [count, setCount] = useState(0)
+export const App = () => {
+    const {
+        view: activeView = EViews.HOME,
+        panel: activePanel = EPanels.HOME,
+    } = useActiveVkuiLocation();
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
-
-export default App
+    return (
+        <SplitLayout>
+            <SplitCol>
+                <Epic activeStory={activeView}>
+                    <View id={EViews.HOME} activePanel={activePanel}>
+                        <HomePanel id={EPanels.HOME}/>
+                    </View>
+                    <View id={EViews.COMMUNITY} activePanel={activePanel}>
+                        <CommunityPanel id={EPanels.COMMUNITY}/>
+                    </View>
+                    <View id={EViews.PROFILE} activePanel={activePanel}>
+                        <ProfilePanel id={EPanels.PROFILE}/>
+                    </View>
+                </Epic>
+            </SplitCol>
+        </SplitLayout>
+    );
+};
