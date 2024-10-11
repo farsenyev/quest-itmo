@@ -6,6 +6,7 @@ import {EViews} from "./consts/views/veiws";
 import {HomePanel} from "./panels/home/home";
 import {CommunityPanel} from "./panels/community/community";
 import {ProfilePanel} from "./panels/profile/profile";
+import '@vkontakte/vkui/dist/vkui.css';
 
 export const App = () => {
     const {
