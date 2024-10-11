@@ -6,6 +6,7 @@ import {EViews} from "./consts/views/veiws";
 import {HomePanel} from "./panels/home/home";
 import {CommunityPanel} from "./panels/community/community";
 import {ProfilePanel} from "./panels/profile/profile";
+import {QuestPanel} from "./panels/quests/quests";
 
 export const App = () => {
     const {
@@ -25,6 +26,9 @@ export const App = () => {
                     </View>
                     <View id={EViews.PROFILE} activePanel={activePanel}>
                         <ProfilePanel id={EPanels.PROFILE}/>
+                    </View>
+                    <View id={EViews.QUESTS} activePanel={activePanel}>
+                        <QuestPanel id={EPanels.QUESTS}/>
                     </View>
                 </Epic>
             </SplitCol>

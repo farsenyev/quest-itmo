@@ -18,4 +18,9 @@ export const router = createBrowserRouter([
         panel: EPanels.PROFILE,
         view: EViews.PROFILE,
     },
+    {
+        path: '/quests',
+        panel: EPanels.QUESTS,
+        view: EViews.QUESTS,
+    },
 ]);
