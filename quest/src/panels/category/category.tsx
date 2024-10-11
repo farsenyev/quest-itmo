@@ -4,7 +4,7 @@ import {useState} from "react";
 import {useParams} from "@vkontakte/vk-mini-apps-router";
 
 export const CategoryPanel = () => {
-    const [role, setRole] = useState('student') //TODO: remove student before deploy!!
+    const [role, setRole] = useState('')
     const params = useParams<'category'>()
     let quests
 
@@ -26,6 +26,5 @@ export const CategoryPanel = () => {
                 )}
             </CardGrid>
         </Panel>
-
     )
 }
