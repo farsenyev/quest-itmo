@@ -7,6 +7,7 @@ import {HomePanel} from "./panels/home/home";
 import {CommunityPanel} from "./panels/community/community";
 import {ProfilePanel} from "./panels/profile/profile";
 import {QuestPanel} from "./panels/quests/quests";
+import {CategoryPanel} from "./panels/category/category";
 
 export const App = () => {
     const {
@@ -29,6 +30,9 @@ export const App = () => {
                     </View>
                     <View id={EViews.QUESTS} activePanel={activePanel}>
                         <QuestPanel id={EPanels.QUESTS}/>
+                    </View>
+                    <View id={EViews.CATEGORY} activePanel={activePanel}>
+                        <CategoryPanel id={EPanels.CATEGORY}/>
                     </View>
                 </Epic>
             </SplitCol>

@@ -23,4 +23,9 @@ export const router = createBrowserRouter([
         panel: EPanels.QUESTS,
         view: EViews.QUESTS,
     },
+    {
+        path: '/quests/:category',
+        panel: EPanels.CATEGORY,
+        view: EViews.CATEGORY,
+    },
 ]);
