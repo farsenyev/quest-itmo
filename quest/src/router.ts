@@ -1,31 +1,36 @@
-import { createBrowserRouter } from '@vkontakte/vk-mini-apps-router';
-import {EPanels} from "./consts/panels/panels";
-import {EViews} from "./consts/views/veiws";
+import { createBrowserRouter } from "@vkontakte/vk-mini-apps-router";
+import { EPanels } from "./consts/panels/panels";
+import { EViews } from "./consts/views/veiws";
 
 export const router = createBrowserRouter([
     {
-        path: '/',
+        path: "/",
         panel: EPanels.HOME,
         view: EViews.HOME,
     },
     {
-        path: '/community',
+        path: "/community",
         panel: EPanels.COMMUNITY,
         view: EViews.COMMUNITY,
     },
     {
-        path: '/profile',
+        path: "/profile",
         panel: EPanels.PROFILE,
         view: EViews.PROFILE,
     },
     {
-        path: '/quests',
+        path: "/quests",
         panel: EPanels.QUESTS,
         view: EViews.QUESTS,
     },
     {
-        path: '/quests/:category',
+        path: "/quests/:category",
         panel: EPanels.CATEGORY,
         view: EViews.CATEGORY,
+    },
+    {
+        path: "/events",
+        panel: EPanels.EVENTS,
+        view: EViews.EVENTS,
     },
 ]);

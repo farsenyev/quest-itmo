@@ -1,4 +1,4 @@
-import { Panel, PanelProps } from '@vkontakte/vkui';
+import { Panel, PanelProps } from "@vkontakte/vkui";
 
 export const HomePanel = (props: PanelProps) => {
     const { ...rest } = props;
