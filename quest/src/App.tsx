@@ -9,6 +9,7 @@ import {ProfilePanel} from "./panels/profile/profile";
 import {QuestPanel} from "./panels/quests/quests";
 import {CategoryPanel} from "./panels/category/category";
 import '@vkontakte/vkui/dist/vkui.css'
+import {AppTabBar} from "./components/tabbar";
 
 export const App = () => {
     const {
@@ -19,7 +20,8 @@ export const App = () => {
     return (
         <SplitLayout>
             <SplitCol>
-                <Epic activeStory={activeView}>
+                <Epic activeStory={activeView}
+                      tabbar={<AppTabBar activeStory={activeView as EViews} />}>
                     <View id={EViews.HOME} activePanel={activePanel}>
                         <HomePanel id={EPanels.HOME}/>
                     </View>
