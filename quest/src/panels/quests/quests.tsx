@@ -6,17 +6,13 @@ import {
     Card,
 } from "@vkontakte/vkui";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
-import { useState } from "react";
 import { beItmo } from "../../consts/quests/quests";
 
 export const QuestPanel = (props: PanelProps) => {
     const { ...rest } = props;
-    const [category, setCategory] = useState("");
     const router = useRouteNavigator();
 
     const toCategory = (category: string) => {
-        setCategory(category);
-
         const PATH = "/quests/:category";
         router.push(PATH, { category }, { keepSearchParams: true });
     };
