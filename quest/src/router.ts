@@ -18,4 +18,14 @@ export const router = createBrowserRouter([
         panel: EPanels.PROFILE,
         view: EViews.PROFILE,
     },
+    {
+        path: '/quests',
+        panel: EPanels.QUESTS,
+        view: EViews.QUESTS,
+    },
+    {
+        path: '/quests/:category',
+        panel: EPanels.CATEGORY,
+        view: EViews.CATEGORY,
+    },
 ]);
