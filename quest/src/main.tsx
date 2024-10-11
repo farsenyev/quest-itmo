@@ -5,7 +5,7 @@ import './index.css'
 import {AppConfig} from "./AppConfig";
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+  // <StrictMode>
     <AppConfig />
-  </StrictMode>,
+  // </StrictMode>,
 )
