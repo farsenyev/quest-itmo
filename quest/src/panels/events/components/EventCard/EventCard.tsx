@@ -11,10 +11,13 @@ export const EventCard = (props: Props) => {
 
     return (
         <ContentCard
-            subtitle={authorId}
+            subtitle={`author_id: ${authorId}`}
             header={title}
             src={imgSrc}
             caption={date.toString()}
+            maxHeight={150}
+            hasHover
+            onClick={() => {}}
         ></ContentCard>
     );
 };

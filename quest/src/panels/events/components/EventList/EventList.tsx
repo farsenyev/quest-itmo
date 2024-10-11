@@ -10,7 +10,7 @@ export const EventList = (props: Props) => {
     const { events } = props;
 
     return (
-        <SimpleGrid gap={"m"}>
+        <SimpleGrid gap={"m"} columns={2} margin="auto">
             {events.map((event) => (
                 <EventCard key={event.id} event={event} />
             ))}
