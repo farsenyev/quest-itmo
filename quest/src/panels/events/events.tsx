@@ -1,6 +1,9 @@
-import { Panel, PanelHeader, PanelProps } from "@vkontakte/vkui";
+import { Panel, PanelHeader, PanelProps, ToolButton } from "@vkontakte/vkui";
 import { EventList } from "./components/EventList/EventList";
 import { TEvent } from "src/types/event";
+import {Icon24Qr} from '@vkontakte/icons'
+import {qrScanner} from "../../utils/qrScanner";
+
 
 const events: TEvent[] = [
     {
@@ -29,12 +32,22 @@ const events: TEvent[] = [
     },
 ];
 
+const user = {
+    id: 111
+}
+
 export const EventPanel = (props: PanelProps) => {
     const { ...rest } = props;
 
     return (
         <Panel {...rest} disableBackground>
             <PanelHeader fixed>Events</PanelHeader>
+            <ToolButton
+                className={"qr-scan-button"}
+                IconCompact={Icon24Qr}
+                IconRegular={Icon24Qr}
+                onClick={() => qrScanner(user)}
+            />
             <EventList events={events} />
         </Panel>
     );
