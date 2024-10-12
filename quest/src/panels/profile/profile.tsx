@@ -8,8 +8,16 @@ import {
     Gradient,
     Button,
     Placeholder,
+    Card,
+    CardGrid,
+    Group,
+    Header,
+    SimpleCell,
+    Image
+
 } from "@vkontakte/vkui";
 import { useProfileContext } from "src/contexts/profileContext";
+import { Icon20TestCoinOutline } from "@vkontakte/icons"
 
 export const ProfilePanel = (props: PanelProps) => {
     const { ...rest } = props;
@@ -21,9 +29,7 @@ export const ProfilePanel = (props: PanelProps) => {
             <PanelHeader>Profile</PanelHeader>
             <FixedLayout vertical="bottom">
                 <Gradient to="top">
-                    <Flex justify="center" style={{ padding: 32 }}>
-                        <Button>Click</Button>
-                    </Flex>
+                    
                 </Gradient>
             </FixedLayout>
 
@@ -40,7 +46,42 @@ export const ProfilePanel = (props: PanelProps) => {
                     {profile?.role}
                 </Placeholder>
             </Gradient>
-            <div></div>
+            <Flex justify="center" >
+              <SimpleCell before={<Icon20TestCoinOutline />} style={{padding: 30}} subtitle="100 токенов">
+                Начислено
+              </SimpleCell> 
+            </Flex>
+            
+            <Flex justify="center" ></Flex>
+            <Group mode="plain" >
+            
+        <Flex justify="center" align="center">
+          
+        <CardGrid size="l">
+            <div style={{ height: 190, width: 900}}>
+              
+            <Group header={<Header mode="secondary">Достижения</Header>}>
+              <SimpleCell style={{padding: 25}}
+                before={<Image src={'https://vkma-course-dishes-backend.prod.kapps.vk-apps.com/storage/achivements/8orders.png'} />} >
+                Получить первые баллы 
+              </SimpleCell>
+
+              <SimpleCell style={{padding: 25}}
+                before={<Image src={'https://vkma-course-dishes-backend.prod.kapps.vk-apps.com/storage/achivements/5orders.png'} />} >
+                Посетить мероприятие 5 раз
+              </SimpleCell>
+
+              <SimpleCell style={{padding: 25}}
+                before={<Image src={'https://vkma-course-dishes-backend.prod.kapps.vk-apps.com/storage/achivements/first_order.png'} />} >
+                Посетить мероприятие 15 раз
+              </SimpleCell>
+            </Group>
+              
+            </div>
+        </CardGrid>
+        </Flex>
+       
+      </Group>
         </Panel>
     );
 };
