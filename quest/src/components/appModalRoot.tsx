@@ -67,6 +67,7 @@ export const AppModalRoot = () => {
             url: url
         }
         if (events) setEvents([...events, eventInfo])
+        router.hideModal()
     }
 
     const modalBack = () => {
