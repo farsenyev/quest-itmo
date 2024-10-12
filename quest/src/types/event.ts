@@ -3,7 +3,8 @@ type TEvent = {
     authorId: number;
     title: string;
     description: string;
-    date: Date;
+    startDate: Date;
+    endDate: Date;
     imgSrc?: string;
     url?: string;
 };

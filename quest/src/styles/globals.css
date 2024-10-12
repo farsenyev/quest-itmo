@@ -35,3 +35,10 @@ body {
     line-height: 1.5;
     color: var(--color-text);
 }
+
+
+.modal__container{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
