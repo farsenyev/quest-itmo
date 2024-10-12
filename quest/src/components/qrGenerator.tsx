@@ -1,16 +1,14 @@
-import React from 'react';
-import { QRCode } from 'react-qr-code';
+import QRCode from "react-qr-code";
 
-interface IProps {
-    props: string
+interface QRCodeComponentProps {
+    url: string;
 }
 
 //send url in component props
-export const QRCodeComponent: React.FC = (props: IProps) => {
+export const QRCodeComponent = ({ url }: QRCodeComponentProps) => {
     return (
         <>
-            <QRCode value={`${props.props}`} />
+            <QRCode value={url} />
         </>
     );
 };
-

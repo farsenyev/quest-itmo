@@ -54,14 +54,16 @@ const user = {
 
 export const EventsPanel = (props: PanelProps) => {
     const { ...rest } = props;
-    const {profile, setProfile} = useProfileContext()
+    const { profile, setProfile } = useProfileContext();
 
     const router = useRouteNavigator();
 
     const { events } = useEventContext();
 
-    const handleQR = () => {
-        const data = qrScanner(user);
+    const { platform } = usePlatformContext();
+
+    const handleQR = async () => {
+        const data = await qrScanner(user);
         if (data)
             router.showPopout(
                 <InfoAlert
@@ -69,7 +71,9 @@ export const EventsPanel = (props: PanelProps) => {
                     text="Qr успешно отсканирован. Держи 10 токенов"
                 />,
             );
-        setProfile({...profile, tokenAmount + 10})
+        if (profile) {
+            setProfile({ ...profile, tokenAmount: profile.tokenAmount + 10 });
+        }
     };
 
     const createEvent = () => {
@@ -86,13 +90,15 @@ export const EventsPanel = (props: PanelProps) => {
                 >
                     Создать
                 </Button>
-                <div>
-                    <ToolButton
-                        IconCompact={Icon24Qr}
-                        IconRegular={Icon24Qr}
-                        onClick={() => handleQR()}
-                    />
-                </div>
+                {platform === "mobile" ? (
+                    <div>
+                        <ToolButton
+                            IconCompact={Icon24Qr}
+                            IconRegular={Icon24Qr}
+                            onClick={() => handleQR()}
+                        />
+                    </div>
+                ) : undefined}
             </div>
             <EventList events={events} />
         </Panel>

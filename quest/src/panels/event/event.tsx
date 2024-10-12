@@ -1,39 +1,26 @@
 import { Panel, PanelHeader, PanelProps } from "@vkontakte/vkui";
-// import { QRCodeComponent } from "../../components/qrGenerator";
 import { useParams } from "@vkontakte/vk-mini-apps-router";
+import { useEventContext } from "src/contexts/eventContext";
+import { QRCodeComponent } from "src/components/qrGenerator";
 
 export const EventPanel = (props: PanelProps) => {
-    // const dataJSON = localStorage.getItem("event");
-    // const data = JSON.parse(dataJSON);
-    // const eventDate = data.date;
-
     const params = useParams<"id">();
     const eventId = params?.id;
+
+    const { events } = useEventContext();
+
+    const event = eventId
+        ? events.find((event) => event.id === +eventId)
+        : undefined;
 
     const { ...rest } = props;
 
     return (
         <Panel {...rest} mode="plain">
-            <PanelHeader fixed>{`Event #${eventId}`}</PanelHeader>
+            <PanelHeader fixed>{event?.title}</PanelHeader>
+            {event && event.url ? (
+                <QRCodeComponent url={event.url} />
+            ) : undefined}
         </Panel>
-        // <>
-        //     {data ? (
-        //         <Div>
-        //             <Header>{data.title}</Header>
-        //             <Div>Дата: {eventDate}</Div>
-        //             <Accordion>
-        //                 <Accordion.Summary iconPosition="before">
-        //                     Описание
-        //                 </Accordion.Summary>
-        //                 <Accordion.Content>
-        //                     <Div>{data.description}</Div>
-        //                 </Accordion.Content>
-        //             </Accordion>
-        //             <QRCodeComponent props={data.url} />
-        //         </Div>
-        //     ) : (
-        //         <Div>Loading...</Div>
-        //     )}
-        // </>
     );
 };

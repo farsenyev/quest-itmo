@@ -10,6 +10,7 @@ const defaultEvents: TEvent[] = [
         description: "description",
         title: "VK Mini Apps x ITMO Hack",
         imgSrc: "https://optim.tildacdn.com/tild3239-6465-4464-a461-393236353534/-/format/webp/1.png",
+        url: "url",
     },
 ];
 
