@@ -5,7 +5,10 @@ import {
     useAdaptivityConditionalRender,
 } from "@vkontakte/vkui";
 import { Epic } from "@vkontakte/vkui";
-import { useActiveVkuiLocation, usePopout } from "@vkontakte/vk-mini-apps-router";
+import {
+    useActiveVkuiLocation,
+    usePopout,
+} from "@vkontakte/vk-mini-apps-router";
 import { EPanels } from "./consts/panels/panels";
 import { EViews } from "./consts/views/veiws";
 import { HomePanel } from "./panels/home/home";
@@ -13,19 +16,19 @@ import { CommunityPanel } from "./panels/community/community";
 import { ProfilePanel } from "./panels/profile/profile";
 import { QuestPanel } from "./panels/quests/quests";
 import { CategoryPanel } from "./panels/category/category";
-import { EventPanel } from "./panels/events/events";
+import { EventsPanel } from "./panels/events/events";
 import "@vkontakte/vkui/dist/vkui.css";
 import { AppTabBar } from "./components/tabbar";
 import { AppModalRoot } from "./components/appModalRoot";
-import { SpecialEventPanel } from "./panels/specialEvent/SpecialEventPanel";
+import { EventPanel } from "./panels/event/event";
 import { useProfile } from "./hooks/useProfile";
 import { useEffect } from "react";
 
 export const App = () => {
     const { initProfile } = useProfile();
     const {
-        view: activeView = EViews.HOME,
-        panel: activePanel = EPanels.HOME,
+        view: activeView = EViews.QUESTS,
+        panel: activePanel = EPanels.QUESTS,
     } = useActiveVkuiLocation();
     const routerPopout = usePopout();
 
@@ -51,15 +54,11 @@ export const App = () => {
                     </View>
                     <View id={EViews.QUESTS} activePanel={activePanel}>
                         <QuestPanel id={EPanels.QUESTS} />
-                    </View>
-                    <View id={EViews.EVENTS} activePanel={activePanel}>
-                        <EventPanel id={EPanels.EVENTS} />
-                    </View>
-                    <View id={EViews.CATEGORY} activePanel={activePanel}>
                         <CategoryPanel id={EPanels.CATEGORY} />
                     </View>
-                    <View id={EViews.EVENT_ID} activePanel={activePanel}>
-                        <SpecialEventPanel id={EPanels.EVENT_ID} />
+                    <View id={EViews.EVENTS} activePanel={activePanel}>
+                        <EventsPanel id={EPanels.EVENTS} />
+                        <EventPanel id={EPanels.EVENT} />
                     </View>
                 </Epic>
             </SplitCol>

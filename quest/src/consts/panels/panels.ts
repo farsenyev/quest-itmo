@@ -5,5 +5,5 @@ export const enum EPanels {
     QUESTS = "quests",
     CATEGORY = "category",
     EVENTS = "events",
-    EVENT_ID = 'event-id'
+    EVENT = "event",
 }

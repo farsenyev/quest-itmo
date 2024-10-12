@@ -1,12 +1,20 @@
-import {Panel, PanelHeader, PanelProps, ToolButton, Group, CellButton, ModalRootContext} from "@vkontakte/vkui";
+import styles from "./events.module.css";
+
+import {
+    Panel,
+    PanelHeader,
+    PanelProps,
+    ToolButton,
+    ModalRootContext,
+    Button,
+} from "@vkontakte/vkui";
 import { EventList } from "./components/EventList/EventList";
 import { TEvent } from "src/types/event";
-import {Icon24Qr, Icon28AddOutline} from '@vkontakte/icons'
-import {qrScanner} from "../../utils/qrScanner";
-import {useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
-import {EModals} from "../../consts/modals/modals";
-import {QrAlert} from "../../components/alerts";
-
+import { Icon24Qr, Icon28AddOutline } from "@vkontakte/icons";
+import { qrScanner } from "../../utils/qrScanner";
+import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
+import { EModals } from "../../consts/modals/modals";
+// import { QrAlert } from "../../components/alerts";
 
 const events: TEvent[] = [
     {
@@ -36,36 +44,58 @@ const events: TEvent[] = [
 ];
 
 const user = {
-    id: 111
-}
+    id: 111,
+};
 
-export const EventPanel = (props: PanelProps) => {
+export const EventsPanel = (props: PanelProps) => {
     const { ...rest } = props;
-    const router = useRouteNavigator()
+    const router = useRouteNavigator();
 
     const handleQR = () => {
-        const data = qrScanner(user)
-        if (data.code === '200') router.showPopout(<InfoAlert header='Поздрваляем!' text="Qr успешно отсканирован. Держи 10 токенов"/>)
-    }
+        const data = qrScanner(user);
+        if (data.code === "200")
+            router.showPopout(
+                <InfoAlert
+                    header="Поздрваляем!"
+                    text="Qr успешно отсканирован. Держи 10 токенов"
+                />,
+            );
+    };
 
     const createEvent = () => {
-        router.showModal(EModals.CREATE_EVENT)
-    }
+        router.showModal(EModals.CREATE_EVENT);
+    };
 
     return (
         <Panel {...rest} disableBackground>
             <PanelHeader fixed>Events</PanelHeader>
-            <Group>
+            <div className={styles["Controls"]}>
+                <Button
+                    before={<Icon28AddOutline />}
+                    className={styles["AddEventButton"]}
+                >
+                    Добавить мероприятие
+                </Button>
                 <ToolButton
-                    className={"qr-scan-button"}
+                    IconCompact={Icon24Qr}
+                    IconRegular={Icon24Qr}
+                    className={styles["QRButton"]}
+                />
+            </div>
+            {/* <Flex direction="row">
+                <ToolButton
+                    // className={"qr-scan-button"}
                     IconCompact={Icon24Qr}
                     IconRegular={Icon24Qr}
                     onClick={() => handleQR()}
-                >QR скан</ToolButton>
-                <CellButton onClick={() => createEvent()} before={<Icon28AddOutline />}>
+                ></ToolButton>
+                <CellButton
+                    onClick={() => createEvent()}
+                    before={<Icon28AddOutline />}
+                >
                     Создать событие
                 </CellButton>
-            </Group>
+            </Flex> */}
             <EventList events={events} />
         </Panel>
     );
