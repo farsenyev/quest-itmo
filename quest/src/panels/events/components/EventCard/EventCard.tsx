@@ -9,8 +9,10 @@ interface Props {
 
 export const EventCard = (props: Props) => {
     const { event } = props;
-    const { id, authorId, startDate, endDate, title, imgSrc } = event;
+    let { id, authorId, startDate, endDate, title, imgSrc } = event;
     const router = useRouteNavigator();
+
+    if (!imgSrc) imgSrc = 'https://itmo.ru/file/pages/213/logo_na_plashke_russkiy_chernyy.png'
 
     const onEventCardClick = (id: number) => {
         router.push(`/event/${id}`);
