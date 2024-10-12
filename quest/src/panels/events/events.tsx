@@ -15,6 +15,8 @@ import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 import { EModals } from "../../consts/modals/modals";
 import { usePlatformContext } from "src/contexts/platformContext";
 import { InfoAlert } from "../../components/alerts";
+import { useProfileContext } from "src/contexts/profileContext";
+import { useEventContext } from "src/contexts/eventContext";
 
 const events: TEvent[] = [
     {
@@ -52,9 +54,10 @@ const user = {
 
 export const EventsPanel = (props: PanelProps) => {
     const { ...rest } = props;
+
     const router = useRouteNavigator();
 
-    const {} = usePlatformContext();
+    const { events } = useEventContext();
 
     const handleQR = () => {
         const data = qrScanner(user);

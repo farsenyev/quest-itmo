@@ -1,13 +1,11 @@
 import { UserInfo } from "@vkontakte/vk-bridge";
 
-enum UserRole {
-    "STUDENT",
-    "EMPLOYEE",
-}
+type UserRole = "STUDENT" | "EMPLOYEE";
 
 type TUser = {
     role: UserRole;
     verified: boolean;
+    tokenAmount: number;
 };
 
 type TProfile = TUser & UserInfo;

@@ -1,5 +1,6 @@
 import { ProfileContextProvider } from "./profileContext";
 import { PlatformContextProvider } from "./platformContext";
+import { EventContextProvider } from "./eventContext";
 
 export const ContextProvider = ({
     children,
@@ -8,7 +9,9 @@ export const ContextProvider = ({
 }) => {
     return (
         <ProfileContextProvider>
-            <PlatformContextProvider>{children}</PlatformContextProvider>
+            <PlatformContextProvider>
+                <EventContextProvider>{children}</EventContextProvider>
+            </PlatformContextProvider>
         </ProfileContextProvider>
     );
 };
