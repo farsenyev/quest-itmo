@@ -14,34 +14,11 @@ datasource db {
 }
 
 model User {
-  id           Int     @id @default(autoincrement())
-  role         Role
-  testsSolved  Test[]
-  questsSolved Quest[]
-  tokenAmount  Int
-}
-
-model Quest {
-  id     Int   @id @default(autoincrement())
-  User   User? @relation(fields: [userId], references: [id])
-  userId Int?
-}
-
-model Test {
-  id          Int          @id @default(autoincrement())
-  question    String
-  options     TestOption[]
-  answerValue Int
-  User        User?        @relation(fields: [userId], references: [id])
-  userId      Int?
-}
-
-model TestOption {
-  id     Int    @id @default(autoincrement())
-  text   String
-  value  Int
-  Test   Test?  @relation(fields: [testId], references: [id])
-  testId Int?
+  id          Int     @id @default(autoincrement())
+  vk_user_id  Int
+  role        Role
+  verified    Boolean @default(false)
+  tokenAmount Int     @default(0)
 }
 
 enum Role {

@@ -1,5 +1,4 @@
 import { db } from '@/lib/db';
-import { NextResponse } from 'next/server';
 import { createResponse } from '@/lib/createResponse';
 
 export const GET = async (
@@ -15,13 +14,11 @@ export const GET = async (
       return createResponse({ status: 200 });
     }
 
-    return createResponse({ status: 200 });
-  } catch (err: any) {
-    return new NextResponse(
-      JSON.stringify({ error: 'Error fetching user: ' + err.message }),
-      {
-        status: 500,
-      }
-    );
+    return createResponse({ data: user, status: 200 });
+  } catch (err) {
+    if (err instanceof Error) {
+      return createResponse({ error: err.message, status: 500 });
+    }
+    return createResponse({ error: 'Unknown error', status: 500 });
   }
 };
