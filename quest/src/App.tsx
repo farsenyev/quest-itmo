@@ -5,7 +5,7 @@ import {
     useAdaptivityConditionalRender,
 } from "@vkontakte/vkui";
 import { Epic } from "@vkontakte/vkui";
-import { useActiveVkuiLocation } from "@vkontakte/vk-mini-apps-router";
+import { useActiveVkuiLocation, usePopout } from "@vkontakte/vk-mini-apps-router";
 import { EPanels } from "./consts/panels/panels";
 import { EViews } from "./consts/views/veiws";
 import { HomePanel } from "./panels/home/home";
@@ -27,13 +27,14 @@ export const App = () => {
         view: activeView = EViews.HOME,
         panel: activePanel = EPanels.HOME,
     } = useActiveVkuiLocation();
+    const routerPopout = usePopout();
 
     useEffect(() => {
         initProfile();
     }, []);
 
     return (
-        <SplitLayout modal={<AppModalRoot />}>
+        <SplitLayout modal={<AppModalRoot />} popout={routerPopout}>
             <SplitCol>
                 <Epic
                     activeStory={activeView}
