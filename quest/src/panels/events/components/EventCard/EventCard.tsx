@@ -11,7 +11,6 @@ export const EventCard = (props: Props) => {
     const { event } = props;
     const {id, authorId, date, title, imgSrc } = event;
     const router = useRouteNavigator()
-    console.log(id)
 
     const toSpecialEvent = (id: number) => {
         const PATH = "/events/:id";

@@ -19,14 +19,6 @@ export const AppTabBar = (props: Props) => {
     return (
         <Tabbar>
             <TabbarItem
-                onClick={() => void routerNavigator.push("/")}
-                selected={activeStory === EViews.HOME}
-                data-story={EViews.HOME}
-                aria-label="home"
-            >
-                <HomeSVG />
-            </TabbarItem>
-            <TabbarItem
                 onClick={() => void routerNavigator.push("/community")}
                 selected={activeStory === EViews.COMMUNITY}
                 data-story={EViews.COMMUNITY}
