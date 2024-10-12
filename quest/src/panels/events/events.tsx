@@ -5,6 +5,7 @@ import {Icon24Qr, Icon28AddOutline} from '@vkontakte/icons'
 import {qrScanner} from "../../utils/qrScanner";
 import {useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
 import {EModals} from "../../consts/modals/modals";
+import {QrAlert} from "../../components/alerts";
 
 
 const events: TEvent[] = [
@@ -42,6 +43,11 @@ export const EventPanel = (props: PanelProps) => {
     const { ...rest } = props;
     const router = useRouteNavigator()
 
+    const handleQR = () => {
+        const data = qrScanner(user)
+        if (data.code === '200') router.showPopout(<InfoAlert header='Поздрваляем!' text="Qr успешно отсканирован. Держи 10 токенов"/>)
+    }
+
     const createEvent = () => {
         router.showModal(EModals.CREATE_EVENT)
     }
@@ -54,7 +60,7 @@ export const EventPanel = (props: PanelProps) => {
                     className={"qr-scan-button"}
                     IconCompact={Icon24Qr}
                     IconRegular={Icon24Qr}
-                    onClick={() => qrScanner(user)}
+                    onClick={() => handleQR()}
                 >QR скан</ToolButton>
                 <CellButton onClick={() => createEvent()} before={<Icon28AddOutline />}>
                     Создать событие
