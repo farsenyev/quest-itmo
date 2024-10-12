@@ -18,6 +18,8 @@ export const App = () => {
         panel: activePanel = EPanels.HOME,
     } = useActiveVkuiLocation();
 
+
+
     return (
         <SplitLayout>
             <SplitCol>
