@@ -24,9 +24,9 @@ export const router = createBrowserRouter([
         view: EViews.QUESTS,
     },
     {
-        path: "/quests/:category",
-        panel: EPanels.CATEGORY,
-        view: EViews.CATEGORY,
+        path: "/quest/:id",
+        panel: EPanels.QUEST,
+        view: EViews.QUESTS,
     },
     {
         path: "/events",
@@ -34,8 +34,8 @@ export const router = createBrowserRouter([
         view: EViews.EVENTS,
     },
     {
-        path: "/events/:id",
-        panel: EPanels.EVENT_ID,
-        view: EViews.EVENT_ID,
+        path: "/event/:id",
+        panel: EPanels.EVENT,
+        view: EViews.EVENTS,
     },
 ]);

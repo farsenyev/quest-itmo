@@ -1,36 +1,48 @@
-import {
-    Panel,
-    PanelHeader,
-    PanelProps,
-    CardGrid,
-    Card,
-} from "@vkontakte/vkui";
+import { Panel, PanelHeader, PanelProps, SimpleGrid } from "@vkontakte/vkui";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 import { beItmo } from "../../consts/quests/quests";
+import { TQuest } from "src/types/quest";
+import { FaHeart } from "react-icons/fa";
+import { IoMedical } from "react-icons/io5";
+import { QuestCard } from "./components/QuestCard/QuestCard";
+import { CustomGrid } from "src/components/CustomGrid/CustomGrid";
 
-export const QuestPanel = (props: PanelProps) => {
+const quests: TQuest[] = [
+    {
+        id: 1,
+        title: "be friendly",
+        description: "text",
+        color: "#ef85b4",
+        Icon: <FaHeart size={36} />,
+    },
+    {
+        id: 2,
+        title: "be healthy",
+        description: "text",
+        Icon: <IoMedical size={36} />,
+    },
+];
+
+export const QuestsPanel = (props: PanelProps) => {
     const { ...rest } = props;
     const router = useRouteNavigator();
 
-    const toCategory = (category: string) => {
-        const PATH = "/quests/:category";
-        router.push(PATH, { category }, { keepSearchParams: true });
+    const onQuestCardClick = (questId: number) => {
+        router.push(`/quest/${questId}`);
     };
 
     return (
         <Panel {...rest} disableBackground>
-            <PanelHeader>Категории be</PanelHeader>
-            <CardGrid size={"l"}>
-                {beItmo.map((be) => (
-                    <Card
-                        mode={"outline"}
-                        key={be.name}
-                        onClick={() => toCategory(be.name)}
-                    >
-                        <h4>{be.name}</h4>
-                    </Card>
+            <PanelHeader fixed>Quests</PanelHeader>
+            <CustomGrid margin="auto" gap={"m"}>
+                {quests.map((quest) => (
+                    <QuestCard
+                        key={quest.id}
+                        quest={quest}
+                        onClick={() => onQuestCardClick(quest.id)}
+                    />
                 ))}
-            </CardGrid>
+            </CustomGrid>
         </Panel>
     );
 };

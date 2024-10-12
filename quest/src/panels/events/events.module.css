@@ -1,0 +1,11 @@
+.Controls {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+}
+
+.QRButton,
+.AddEventButton {
+    width: fit-content;
+    flex-grow: 0;
+}

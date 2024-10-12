@@ -8,9 +8,9 @@ import {
 } from "@vkontakte/vk-bridge-react";
 import { AdaptivityProvider, ConfigProvider, AppRoot } from "@vkontakte/vkui";
 import { RouterProvider } from "@vkontakte/vk-mini-apps-router";
-import { ProfileContextProvider } from "./contexts/profileContext";
+import { ContextProvider } from "./contexts/contextProvider";
 
-// import { transformVKBridgeAdaptivity } from './utils';
+import { transformVKBridgeAdaptivity } from "./utils/transformVKBridgeAdaptivity";
 
 import { App } from "./App";
 import { router } from "./router";
@@ -18,7 +18,7 @@ import { router } from "./router";
 export const AppConfig = () => {
     const vkBridgeAppearance = useAppearance() || undefined;
     const vkBridgeInsets = useInsets() || undefined;
-    // const adaptivity = transformVKBridgeAdaptivity(useAdaptivity());
+    const adaptivity = transformVKBridgeAdaptivity(useAdaptivity());
     const { vk_platform } = parseURLSearchParamsForGetLaunchParams(
         window.location.search,
     );
@@ -30,12 +30,12 @@ export const AppConfig = () => {
             isWebView={vkBridge.isWebView()}
             hasCustomPanelHeaderAfter={true}
         >
-            <AdaptivityProvider>
+            <AdaptivityProvider {...adaptivity}>
                 <AppRoot mode="full" safeAreaInsets={vkBridgeInsets}>
                     <RouterProvider router={router}>
-                        <ProfileContextProvider>
+                        <ContextProvider>
                             <App />
-                        </ProfileContextProvider>
+                        </ContextProvider>
                     </RouterProvider>
                 </AppRoot>
             </AdaptivityProvider>

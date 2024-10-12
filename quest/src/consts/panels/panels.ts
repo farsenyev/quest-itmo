@@ -3,7 +3,7 @@ export const enum EPanels {
     COMMUNITY = "community",
     PROFILE = "profile",
     QUESTS = "quests",
-    CATEGORY = "category",
+    QUEST = "quest",
     EVENTS = "events",
-    EVENT_ID = 'event-id'
+    EVENT = "event",
 }

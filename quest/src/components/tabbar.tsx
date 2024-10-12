@@ -2,11 +2,12 @@ import { Tabbar, TabbarItem } from "@vkontakte/vkui";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 
 import { EViews } from "../consts/views/veiws";
-import { HomeSVG } from "../svg/home";
-import { CommunitySVG } from "../svg/community";
-import { ProfileSVG } from "../svg/profile";
-import { QuestsSVG } from "../svg/quests";
-import { Icon28CalendarAddOutline } from "@vkontakte/icons";
+import {
+    Icon28CalendarAddOutline,
+    Icon28BookSpreadOutline,
+    Icon28UserCircleOutline,
+    Icon28Users3Outline,
+} from "@vkontakte/icons";
 
 interface Props {
     activeStory: EViews;
@@ -19,20 +20,20 @@ export const AppTabBar = (props: Props) => {
     return (
         <Tabbar>
             <TabbarItem
+                onClick={() => void routerNavigator.push("/quests")}
+                selected={activeStory === EViews.QUESTS}
+                data-story={EViews.QUESTS}
+                aria-label="quests"
+            >
+                <Icon28BookSpreadOutline />
+            </TabbarItem>
+            <TabbarItem
                 onClick={() => void routerNavigator.push("/community")}
                 selected={activeStory === EViews.COMMUNITY}
                 data-story={EViews.COMMUNITY}
                 aria-label="community"
             >
-                <CommunitySVG />
-            </TabbarItem>
-            <TabbarItem
-                onClick={() => void routerNavigator.push("/profile")}
-                selected={activeStory === EViews.PROFILE}
-                data-story={EViews.PROFILE}
-                aria-label="profile"
-            >
-                <ProfileSVG />
+                <Icon28Users3Outline />
             </TabbarItem>
             <TabbarItem
                 onClick={() => void routerNavigator.push("/events")}
@@ -43,12 +44,12 @@ export const AppTabBar = (props: Props) => {
                 <Icon28CalendarAddOutline />
             </TabbarItem>
             <TabbarItem
-                onClick={() => void routerNavigator.push("/quests")}
-                selected={activeStory === EViews.QUESTS}
-                data-story={EViews.QUESTS}
-                aria-label="quests"
+                onClick={() => void routerNavigator.push("/profile")}
+                selected={activeStory === EViews.PROFILE}
+                data-story={EViews.PROFILE}
+                aria-label="profile"
             >
-                <QuestsSVG />
+                <Icon28UserCircleOutline />
             </TabbarItem>
         </Tabbar>
     );

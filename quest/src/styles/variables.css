@@ -1,0 +1,7 @@
+:root {
+    --color-bg: var(--vkui--color_background);
+    --color-bg-secondary: var(--vkui--color_background_secondary);
+    --color-bg-content: var(--vkui--color_background_content);
+
+    --color-text: var(--vkui--color_text_primary);
+}
