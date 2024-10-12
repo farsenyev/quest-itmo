@@ -21,6 +21,7 @@ import { SpecialEventPanel } from "./panels/specialEvent/SpecialEventPanel";
 import { useProfile } from "./hooks/useProfile";
 import { useEffect } from "react";
 import bridge from "@vkontakte/vk-bridge";
+import './App.css';
 
 export const App = () => {
     const { initProfile } = useProfile();
