@@ -8,6 +8,7 @@ import {
 } from "@vkontakte/vk-bridge-react";
 import { AdaptivityProvider, ConfigProvider, AppRoot } from "@vkontakte/vkui";
 import { RouterProvider } from "@vkontakte/vk-mini-apps-router";
+import { ProfileContextProvider } from "./contexts/profileContext";
 
 // import { transformVKBridgeAdaptivity } from './utils';
 
@@ -32,7 +33,9 @@ export const AppConfig = () => {
             <AdaptivityProvider>
                 <AppRoot mode="full" safeAreaInsets={vkBridgeInsets}>
                     <RouterProvider router={router}>
-                        <App />
+                        <ProfileContextProvider>
+                            <App />
+                        </ProfileContextProvider>
                     </RouterProvider>
                 </AppRoot>
             </AdaptivityProvider>
