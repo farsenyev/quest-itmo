@@ -33,4 +33,9 @@ export const router = createBrowserRouter([
         panel: EPanels.EVENTS,
         view: EViews.EVENTS,
     },
+    {
+        path: "/events/:id",
+        panel: EPanels.EVENT_ID,
+        view: EViews.EVENT_ID,
+    },
 ]);

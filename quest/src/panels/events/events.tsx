@@ -1,8 +1,10 @@
-import { Panel, PanelHeader, PanelProps, ToolButton } from "@vkontakte/vkui";
+import {Panel, PanelHeader, PanelProps, ToolButton, Group, CellButton, ModalRootContext} from "@vkontakte/vkui";
 import { EventList } from "./components/EventList/EventList";
 import { TEvent } from "src/types/event";
-import {Icon24Qr} from '@vkontakte/icons'
+import {Icon24Qr, Icon28AddOutline} from '@vkontakte/icons'
 import {qrScanner} from "../../utils/qrScanner";
+import {useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
+import {EModals} from "../../consts/modals/modals";
 
 
 const events: TEvent[] = [
@@ -38,16 +40,26 @@ const user = {
 
 export const EventPanel = (props: PanelProps) => {
     const { ...rest } = props;
+    const router = useRouteNavigator()
+
+    const createEvent = () => {
+        router.showModal(EModals.CREATE_EVENT)
+    }
 
     return (
         <Panel {...rest} disableBackground>
             <PanelHeader fixed>Events</PanelHeader>
-            <ToolButton
-                className={"qr-scan-button"}
-                IconCompact={Icon24Qr}
-                IconRegular={Icon24Qr}
-                onClick={() => qrScanner(user)}
-            />
+            <Group>
+                <ToolButton
+                    className={"qr-scan-button"}
+                    IconCompact={Icon24Qr}
+                    IconRegular={Icon24Qr}
+                    onClick={() => qrScanner(user)}
+                >QR скан</ToolButton>
+                <CellButton onClick={() => createEvent()} before={<Icon28AddOutline />}>
+                    Создать событие
+                </CellButton>
+            </Group>
             <EventList events={events} />
         </Panel>
     );

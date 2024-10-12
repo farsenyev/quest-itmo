@@ -1,5 +1,7 @@
 import { TEvent } from "src/types/event";
 import { ContentCard } from "@vkontakte/vkui";
+import {QRCodeComponent} from "../../../../components/qrGenerator";
+import {useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
 
 interface Props {
     event: TEvent;
@@ -7,7 +9,14 @@ interface Props {
 
 export const EventCard = (props: Props) => {
     const { event } = props;
-    const { authorId, date, title, imgSrc } = event;
+    const {id, authorId, date, title, imgSrc } = event;
+    const router = useRouteNavigator()
+    console.log(id)
+
+    const toSpecialEvent = (id: number) => {
+        const PATH = "/events/:id";
+        router.push(PATH, {id}, {keepSearchParams: true});
+    }
 
     return (
         <ContentCard
@@ -17,7 +26,8 @@ export const EventCard = (props: Props) => {
             caption={date.toString()}
             maxHeight={150}
             hasHover
-            onClick={() => {}}
-        ></ContentCard>
+            onClick={() => toSpecialEvent(id)}
+        >
+        </ContentCard>
     );
 };
