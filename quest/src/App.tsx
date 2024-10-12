@@ -11,14 +11,19 @@ import { CategoryPanel } from "./panels/category/category";
 import { EventPanel } from "./panels/events/events";
 import "@vkontakte/vkui/dist/vkui.css";
 import { AppTabBar } from "./components/tabbar";
+import { useProfile } from "./hooks/useProfile";
+import { useEffect } from "react";
 
 export const App = () => {
+    const { initProfile } = useProfile();
     const {
         view: activeView = EViews.HOME,
         panel: activePanel = EPanels.HOME,
     } = useActiveVkuiLocation();
 
-
+    useEffect(() => {
+        initProfile();
+    }, []);
 
     return (
         <SplitLayout>
