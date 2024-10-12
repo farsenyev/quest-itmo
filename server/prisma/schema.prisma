@@ -15,7 +15,7 @@ datasource db {
 
 model User {
   id          Int     @id @default(autoincrement())
-  vk_user_id  Int
+  vk_user_id  Int     @unique
   role        Role
   verified    Boolean @default(false)
   tokenAmount Int     @default(0)

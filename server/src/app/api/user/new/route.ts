@@ -6,15 +6,19 @@ export const POST = async (req: Request) => {
     const body = await req.json();
 
     const {
-      vk_user_id,
+      vkUserId,
       role,
-    }: { vk_user_id: number; role: 'STUDENT' | 'EMPLOYEE' } = body;
+    }: { vkUserId: number; role: 'STUDENT' | 'EMPLOYEE' } = body;
 
-    if (!vk_user_id || !role) {
+    if (!vkUserId || !role) {
       return createResponse({ error: 'Unknown error', status: 500 });
     }
 
-    return createResponse({ data: body, status: 200 });
+    const newUser = await db.user.create({
+      data: { vk_user_id: vkUserId, role },
+    });
+
+    return createResponse({ data: newUser, status: 200 });
   } catch (err) {
     if (err instanceof Error) {
       return createResponse({ error: err.message, status: 500 });

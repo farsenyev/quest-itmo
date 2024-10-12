@@ -16,16 +16,25 @@ export const useProfile = () => {
         const fetchedUser = await getUser(userInfo.id);
 
         if (fetchedUser === null) {
-            // const response = await createNewUser(userInfo.id);
-            console.log("New user");
+            const newUser = await createNewUser(userInfo.id);
+
+            const {
+                data: { role, verified },
+            } = newUser;
+
+            setProfile({ ...userInfo, role, verified });
+
+            return;
         }
 
-        if (fetchedUser.error) {
+        if (fetchedUser?.error) {
             console.log("Error");
             return;
         }
 
-        const { role, verified } = fetchedUser;
+        const {
+            data: { role, verified },
+        } = fetchedUser;
 
         setProfile({ ...userInfo, role, verified });
     };
