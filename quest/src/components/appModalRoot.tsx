@@ -6,6 +6,8 @@ import {CreateUrlForEvent} from "../utils/createUrlForEvent";
 import {QRCodeComponent} from "./qrGenerator";
 import {sendEventInfoToDB} from "../utils/sendEventInfoToDB";
 import "..//App.css";
+import {useEventContext} from "../contexts/eventContext";
+import {TEvent} from "../types/event";
 
 export const AppModalRoot = () => {
     const {modal: activeModal} = useActiveVkuiLocation()
@@ -13,7 +15,7 @@ export const AppModalRoot = () => {
     const [startDateValue, setStartDateValue] = useState(() => new Date());
     const [endDateValue, setEndDateValue] = useState(() => new Date());
     const [eventName, setEventName] = useState('');
-    const [eventDescr, setEventDescrName] = useState('Lorem ipsum')
+    const [eventDescr, setEventDescrName] = useState('')
     const [eventImgSrc, setImgSrc] = useState('')
     const [enableTime, setEnableTime] = useState(true);
     const [disablePast, setDisablePast] = useState(true);
@@ -23,6 +25,7 @@ export const AppModalRoot = () => {
     const [size, setSize] = useState('m');
     const [listenDayChangesForUpdate, setListenDayChangesForUpdate] = useState(true);
     const [urlForQR, setUrlForQR] = useState('')
+    const {events, setEvents} = useEventContext()
 
     const handleInputNameChange = (e) => {
         setEventName(e.target.value)
@@ -40,6 +43,16 @@ export const AppModalRoot = () => {
         const url = CreateUrlForEvent(startDateValue, endDateValue, eventName)
         setUrlForQR(url)
         sendEventInfoToDB(startDateValue, endDateValue, eventName, eventDescr, url)
+        const eventInfo: TEvent = {
+            id: 10000,
+            endDate: endDateValue,
+            startDate: startDateValue,
+            authorId: 10000,
+            title: eventName,
+            description: eventDescr,
+            url: url
+        }
+        if (events) setEvents([...events, eventInfo])
     }
 
     const modalBack = () => {
