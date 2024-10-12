@@ -6,11 +6,11 @@ interface IProps {
 }
 
 //send url in component props
-export const QRCodeComponent: React.FC = (props:IProps) => {
+export const QRCodeComponent: React.FC = (props: IProps) => {
     return (
-        <div>
+        <>
             <QRCode value={`${props.props}`} />
-        </div>
+        </>
     );
 };
 

@@ -19,7 +19,7 @@ export const CategoryPanel = () => {
             <CardGrid size={'l'}>
                 <h2>{params.category}</h2>
                 {quests.map((quest) =>
-                    <Card key={quest.name}>
+                    <Card key={quest.name} >
                         <h4>{quest.name}</h4>
                         <p>{quest.desc}</p>
                     </Card>

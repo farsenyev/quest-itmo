@@ -1,4 +1,9 @@
-import { SplitLayout, SplitCol, View } from "@vkontakte/vkui";
+import {
+    SplitLayout,
+    SplitCol,
+    View,
+    useAdaptivityConditionalRender
+} from "@vkontakte/vkui";
 import { Epic } from "@vkontakte/vkui";
 import { useActiveVkuiLocation } from "@vkontakte/vk-mini-apps-router";
 import { EPanels } from "./consts/panels/panels";
@@ -11,6 +16,8 @@ import { CategoryPanel } from "./panels/category/category";
 import { EventPanel } from "./panels/events/events";
 import "@vkontakte/vkui/dist/vkui.css";
 import { AppTabBar } from "./components/tabbar";
+import {AppModalRoot} from "./components/appModalRoot";
+import {SpecialEventPanel} from "./panels/specialEvent/SpecialEventPanel";
 
 export const App = () => {
     const {
@@ -18,10 +25,8 @@ export const App = () => {
         panel: activePanel = EPanels.HOME,
     } = useActiveVkuiLocation();
 
-
-
     return (
-        <SplitLayout>
+        <SplitLayout modal={<AppModalRoot/>}>
             <SplitCol>
                 <Epic
                     activeStory={activeView}
@@ -44,6 +49,9 @@ export const App = () => {
                     </View>
                     <View id={EViews.CATEGORY} activePanel={activePanel}>
                         <CategoryPanel id={EPanels.CATEGORY} />
+                    </View>
+                    <View id={EViews.EVENT_ID} activePanel={activePanel}>
+                        <SpecialEventPanel id={EPanels.EVENT_ID} />
                     </View>
                 </Epic>
             </SplitCol>

@@ -5,4 +5,5 @@ export const enum EViews {
     QUESTS = "quests",
     CATEGORY = "category",
     EVENTS = "events",
+    EVENT_ID = 'event-id'
 }

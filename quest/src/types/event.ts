@@ -5,6 +5,7 @@ type TEvent = {
     description: string;
     date: Date;
     imgSrc?: string;
+    url?: string;
 };
 
 export type { TEvent };
