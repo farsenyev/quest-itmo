@@ -42,3 +42,8 @@ body {
     flex-direction: column;
     align-content: center;
 }
+
+.event_back-button button{
+    width: 100%;
+
+}

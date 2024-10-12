@@ -1,4 +1,17 @@
-import {ModalPage, ModalPageHeader, ModalRoot, platform, FormItem, FormLayoutGroup, Calendar, Button, Div, Input } from "@vkontakte/vkui";
+import {
+    ModalPage,
+    ModalPageHeader,
+    ModalRoot,
+    platform,
+    FormItem,
+    FormLayoutGroup,
+    Calendar,
+    Button,
+    Div,
+    Input,
+    PanelHeaderButton,
+    PanelHeaderClose, useAdaptivityWithJSMediaQueries, useAdaptivityConditionalRender
+} from "@vkontakte/vkui";
 import {EModals} from "../consts/modals/modals";
 import {useActiveVkuiLocation, useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
 import {useState} from "react";
@@ -25,6 +38,8 @@ export const AppModalRoot = () => {
     const [listenDayChangesForUpdate, setListenDayChangesForUpdate] = useState(true);
     const [urlForQR, setUrlForQR] = useState('')
     const {events, setEvents} = useEventContext()
+    const { isDesktop } = useAdaptivityWithJSMediaQueries();
+    const { sizeX } = useAdaptivityConditionalRender();
 
     const handleInputNameChange = (e) => {
         setEventName(e.target.value)
@@ -91,17 +106,17 @@ export const AppModalRoot = () => {
                     </FormItem>
                     <FormItem>
                         <Div>Дата начала:</Div>
-                            <Calendar
-                                value={startDateValue}
-                                onChange={setStartDateValue}
-                                enableTime={enableTime}
-                                disablePast={disablePast}
-                                disableFuture={disableFuture}
-                                disablePickers={disablePickers}
-                                showNeighboringMonth={showNeighboringMonth}
-                                size={size}
-                                listenDayChangesForUpdate={listenDayChangesForUpdate}
-                            />
+                        <Calendar
+                            value={startDateValue}
+                            onChange={setStartDateValue}
+                            enableTime={enableTime}
+                            disablePast={disablePast}
+                            disableFuture={disableFuture}
+                            disablePickers={disablePickers}
+                            showNeighboringMonth={showNeighboringMonth}
+                            size={size}
+                            listenDayChangesForUpdate={listenDayChangesForUpdate}
+                        />
                     </FormItem>
                     <FormItem>
                         <Div>Дата конца:</Div>
@@ -129,6 +144,35 @@ export const AppModalRoot = () => {
                     <Button onClick={submitEventForm} style={{width: '95%', alignSelf: 'center'}}>Создать</Button>
                 </FormLayoutGroup>
             </ModalPage>
+
+            <ModalPage
+                id={EModals.CHECK_EVENT}
+                onClose={modalBack}
+                settlingHeight={100}
+                height={isDesktop ? 250 : '70%'}
+                hideCloseButton={platform === 'ios'}
+                header={
+                    <ModalPageHeader
+                        before={
+                            sizeX.compact &&
+                            platform === 'android' && (
+                                <PanelHeaderClose className={sizeX.compact.className} onClick={modalBack}/>
+                            )
+                        }
+                        after={
+                            platform === 'ios' && (
+                                <PanelHeaderButton onClick={modalBack}>
+                                </PanelHeaderButton>
+                            )
+                        }
+                    >
+                        random event name
+                    </ModalPageHeader>
+                }
+            >
+                random qr code and event date with description
+            </ModalPage>
+
         </ModalRoot>
     )
 }

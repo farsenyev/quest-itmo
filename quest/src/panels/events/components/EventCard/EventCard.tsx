@@ -12,7 +12,7 @@ export const EventCard = (props: Props) => {
     let { id, authorId, startDate, endDate, title, imgSrc } = event;
     const router = useRouteNavigator();
 
-    if (!imgSrc) imgSrc = 'https://itmo.ru/file/pages/213/logo_na_plashke_russkiy_chernyy.png'
+    if (!imgSrc) imgSrc = 'https://static.vecteezy.com/system/resources/thumbnails/007/570/292/small/several-young-people-are-gathering-and-talking-free-vector.jpg'
 
     const onEventCardClick = (id: number) => {
         router.push(`/event/${id}`);
@@ -23,8 +23,9 @@ export const EventCard = (props: Props) => {
             subtitle={`author_id: ${authorId}`}
             header={title}
             src={imgSrc}
-            caption={`${startDate.toString()}-${endDate.toString()}`}
             maxHeight={150}
+            height={100}
+            caption={`${startDate.toLocaleString().slice(0, -3)}-${endDate.toLocaleString().slice(0, -3)}`}
             hasHover
             onClick={() => onEventCardClick(id)}
         ></ContentCard>
