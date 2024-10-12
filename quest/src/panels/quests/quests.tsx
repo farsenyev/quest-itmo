@@ -1,4 +1,4 @@
-import { Panel, PanelHeader, PanelProps, SimpleGrid } from "@vkontakte/vkui";
+import { Panel, PanelHeader, PanelProps, CardScroll, Group } from "@vkontakte/vkui";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 import { beItmo } from "../../consts/quests/quests";
 import { TQuest } from "src/types/quest";
@@ -19,8 +19,10 @@ const quests: TQuest[] = [
         id: 2,
         title: "be healthy",
         description: "text",
+        color: '#e83757',
         Icon: <IoMedical size={36} />,
     },
+
 ];
 
 export const QuestsPanel = (props: PanelProps) => {
@@ -42,6 +44,19 @@ export const QuestsPanel = (props: PanelProps) => {
                         onClick={() => onQuestCardClick(quest.id)}
                     />
                 ))}
+
+                <Group>
+                    <CardScroll size={"s"}>
+                        {quests.map((quest) => (
+                            <QuestCard
+                                key={quest.id}
+                                quest={quest}
+                                onClick={() => onQuestCardClick(quest.id)}
+                                style={{background: quest.color}}
+                            />
+                        ))}
+                    </CardScroll>
+                </Group>
             </CustomGrid>
         </Panel>
     );

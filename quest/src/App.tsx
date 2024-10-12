@@ -34,6 +34,7 @@ export const App = () => {
         view: activeView = EViews.QUESTS,
         panel: activePanel = EPanels.QUESTS,
     } = useActiveVkuiLocation();
+    console.log(activeView, activePanel)
     const routerPopout = usePopout();
 
     usePlatform();

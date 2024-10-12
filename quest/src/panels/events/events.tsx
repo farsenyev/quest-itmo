@@ -54,6 +54,7 @@ const user = {
 
 export const EventsPanel = (props: PanelProps) => {
     const { ...rest } = props;
+    const {profile, setProfile} = useProfileContext()
 
     const router = useRouteNavigator();
 
@@ -61,13 +62,14 @@ export const EventsPanel = (props: PanelProps) => {
 
     const handleQR = () => {
         const data = qrScanner(user);
-        if (data.code === "200")
+        if (data)
             router.showPopout(
                 <InfoAlert
                     header="Поздрваляем!"
                     text="Qr успешно отсканирован. Держи 10 токенов"
                 />,
             );
+        setProfile({...profile, tokenAmount + 10})
     };
 
     const createEvent = () => {
