@@ -1,4 +1,5 @@
-import "./index.css";
+import "@vkontakte/vkui/dist/vkui.css";
+import "src/styles/globals.css";
 
 // import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";

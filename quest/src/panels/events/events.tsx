@@ -14,6 +14,7 @@ import { Icon24Qr, Icon28AddOutline } from "@vkontakte/icons";
 import { qrScanner } from "../../utils/qrScanner";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 import { EModals } from "../../consts/modals/modals";
+import { usePlatformContext } from "src/contexts/platformContext";
 // import { QrAlert } from "../../components/alerts";
 
 const events: TEvent[] = [
@@ -51,6 +52,8 @@ export const EventsPanel = (props: PanelProps) => {
     const { ...rest } = props;
     const router = useRouteNavigator();
 
+    const {} = usePlatformContext();
+
     const handleQR = () => {
         const data = qrScanner(user);
         if (data.code === "200")
@@ -72,15 +75,17 @@ export const EventsPanel = (props: PanelProps) => {
             <div className={styles["Controls"]}>
                 <Button
                     before={<Icon28AddOutline />}
-                    className={styles["AddEventButton"]}
+                    // className={styles["AddEventButton"]}
                 >
-                    Добавить мероприятие
+                    Создать
                 </Button>
-                <ToolButton
-                    IconCompact={Icon24Qr}
-                    IconRegular={Icon24Qr}
-                    className={styles["QRButton"]}
-                />
+                <div>
+                    <ToolButton
+                        IconCompact={Icon24Qr}
+                        IconRegular={Icon24Qr}
+                        // className={styles["QRButton"]}
+                    />
+                </div>
             </div>
             {/* <Flex direction="row">
                 <ToolButton

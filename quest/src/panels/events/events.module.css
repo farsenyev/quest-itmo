@@ -1,7 +1,7 @@
 .Controls {
     display: flex;
     justify-content: space-between;
-    padding: 12px;
+    padding: 16px;
 }
 
 .QRButton,
