@@ -27,12 +27,12 @@ export const CommunityPanel = (props: PanelProps) => {
                         style={{ padding: 10 }}
                         before={
                             <>
-                                <p>{i+1}. </p>
+                                <p style={{margin: 10}} >{i+1}. </p>
                                 <Avatar src={leader.imgSrc} />
                             </>
                         }
                         after={
-                            <p>{leader.points} points</p>
+                            <p>{leader.points} tokens</p>
                         }
                     >
                         {leader.name}
