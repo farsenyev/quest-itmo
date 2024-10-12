@@ -3,7 +3,6 @@ import {EModals} from "../consts/modals/modals";
 import {useActiveVkuiLocation, useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
 import {useState} from "react";
 import {CreateUrlForEvent} from "../utils/createUrlForEvent";
-import {QRCodeComponent} from "./qrGenerator";
 import {sendEventInfoToDB} from "../utils/sendEventInfoToDB";
 import "..//App.css";
 import {useEventContext} from "../contexts/eventContext";
@@ -129,7 +128,6 @@ export const AppModalRoot = () => {
                     </FormItem>
                     <Button onClick={submitEventForm} style={{width: '95%', alignSelf: 'center'}}>Создать</Button>
                 </FormLayoutGroup>
-                {urlForQR && <QRCodeComponent props={urlForQR}/>}
             </ModalPage>
         </ModalRoot>
     )
