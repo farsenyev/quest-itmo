@@ -31,15 +31,16 @@ export const HomePanel = (props: PanelProps) => {
     const { ...rest } = props;
 
     return (
-        <Panel {...rest} disableBackground>
-            <h1>Добро пожаловать в ITMO!</h1>
-            <ButtonGroup
+        <Panel className={styles["home__panel"]} {...rest} disableBackground>
+            <h1 style={{color: '#eee'}}>Добро пожаловать в ITMO!</h1>
+            <ButtonGroup 
                 mode="vertical"
                 gap="m"
                 className={styles["choose-btn"]}
                 style={{ minWidth: 328 }}
             >
                 <Button
+                    className={styles["group__btn"]}
                     onClick={() => setRole("student")}
                     size="l"
                     appearance="accent"
@@ -48,6 +49,7 @@ export const HomePanel = (props: PanelProps) => {
                     Студент
                 </Button>
                 <Button
+                      className={styles["group__btn"]}
                     onClick={() => setRole("employee")}
                     size="l"
                     appearance="accent"
@@ -58,7 +60,7 @@ export const HomePanel = (props: PanelProps) => {
             </ButtonGroup>
 
             {role && role === "student" && (
-                <FormLayoutGroup>
+                <FormLayoutGroup className={styles["form"]} >
                     <FormItem htmlFor="name" top="Номер ИСУ">
                         <Input id="number" />
                     </FormItem>
@@ -80,7 +82,7 @@ export const HomePanel = (props: PanelProps) => {
             )}
 
             {role && role === "employee" && (
-                <FormLayoutGroup>
+                <FormLayoutGroup className={styles["form"]}>
                     <FormItem htmlFor="name" top="Номер ИСУ">
                         <Input id="number" />
                     </FormItem>
