@@ -8,7 +8,6 @@ import {
     Gradient,
     Button,
     Placeholder,
-    Card,
     CardGrid,
     Group,
     Header,
@@ -35,7 +34,7 @@ export const ProfilePanel = (props: PanelProps) => {
 
             <Gradient mode="tint" to="top">
                 <Placeholder
-                    icon={<Avatar size={96} />}
+                    icon={<Avatar size={96} src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJcNMReFCqQhjXgn9r8THCLTK3lYib256XaA&s'} />}
                     header={`${profile?.first_name} ${profile?.last_name}`}
                     action={
                         <Button size="m" mode="secondary">
