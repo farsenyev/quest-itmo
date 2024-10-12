@@ -7,7 +7,6 @@ export const qrScanner = async (fetchedUser) => {
             const response = await fetch(
                 "https://your-server.com/api/credit-coins",
                 {
-                    //TODO: change fetch api
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

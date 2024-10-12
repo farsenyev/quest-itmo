@@ -1,10 +1,11 @@
-export const sendEventInfoToDB = (date: Date, name: string, descr: string, url: string) => {
+export const sendEventInfoToDB = (startDate: Date, endDate: Date, name: string, descr: string, url: string) => {
     const eventInfo = {
         id: 10000,
         authorId: 10000,
         title: name,
         description: descr,
-        date,
+        startDate,
+        endDate,
         url: url
     }
 

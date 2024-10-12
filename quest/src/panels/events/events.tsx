@@ -5,7 +5,6 @@ import {
     PanelHeader,
     PanelProps,
     ToolButton,
-    ModalRootContext,
     Button,
 } from "@vkontakte/vkui";
 import { EventList } from "./components/EventList/EventList";
@@ -15,14 +14,15 @@ import { qrScanner } from "../../utils/qrScanner";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 import { EModals } from "../../consts/modals/modals";
 import { usePlatformContext } from "src/contexts/platformContext";
+import { InfoAlert } from "../../components/alerts";
 import { useProfileContext } from "src/contexts/profileContext";
 import { useEventContext } from "src/contexts/eventContext";
-// import { QrAlert } from "../../components/alerts";
 
 const events: TEvent[] = [
     {
         authorId: 1,
-        date: new Date(),
+        startDate: new Date(),
+        endDate: new Date(),
         description: "text",
         id: 1,
         title: "Event #1",
@@ -30,7 +30,8 @@ const events: TEvent[] = [
     },
     {
         authorId: 2,
-        date: new Date(),
+        startDate: new Date(),
+        endDate: new Date(),
         description: "text",
         id: 2,
         title: "Event #2",
@@ -38,7 +39,8 @@ const events: TEvent[] = [
     },
     {
         authorId: 3,
-        date: new Date(),
+        startDate: new Date(),
+        endDate: new Date(),
         description: "text",
         id: 3,
         title: "Event #3",
@@ -78,7 +80,7 @@ export const EventsPanel = (props: PanelProps) => {
             <div className={styles["Controls"]}>
                 <Button
                     before={<Icon28AddOutline />}
-                    // className={styles["AddEventButton"]}
+                    onClick={() => createEvent()}
                 >
                     Создать
                 </Button>
@@ -86,24 +88,10 @@ export const EventsPanel = (props: PanelProps) => {
                     <ToolButton
                         IconCompact={Icon24Qr}
                         IconRegular={Icon24Qr}
-                        // className={styles["QRButton"]}
+                        onClick={() => handleQR()}
                     />
                 </div>
             </div>
-            {/* <Flex direction="row">
-                <ToolButton
-                    // className={"qr-scan-button"}
-                    IconCompact={Icon24Qr}
-                    IconRegular={Icon24Qr}
-                    onClick={() => handleQR()}
-                ></ToolButton>
-                <CellButton
-                    onClick={() => createEvent()}
-                    before={<Icon28AddOutline />}
-                >
-                    Создать событие
-                </CellButton>
-            </Flex> */}
             <EventList events={events} />
         </Panel>
     );

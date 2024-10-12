@@ -9,7 +9,7 @@ interface Props {
 
 export const EventCard = (props: Props) => {
     const { event } = props;
-    const { id, authorId, date, title, imgSrc } = event;
+    const { id, authorId, startDate, endDate, title, imgSrc } = event;
     const router = useRouteNavigator();
 
     const onEventCardClick = (id: number) => {
@@ -21,7 +21,7 @@ export const EventCard = (props: Props) => {
             subtitle={`author_id: ${authorId}`}
             header={title}
             src={imgSrc}
-            caption={date.toString()}
+            caption={`${startDate.toString()}-${endDate.toString()}`}
             maxHeight={150}
             hasHover
             onClick={() => onEventCardClick(id)}

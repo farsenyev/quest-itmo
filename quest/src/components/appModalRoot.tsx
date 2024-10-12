@@ -1,17 +1,20 @@
-import {ModalPage, ModalPageHeader, ModalRoot, platform, FormItem, FormLayoutGroup, Calendar, Button } from "@vkontakte/vkui";
+import {ModalPage, ModalPageHeader, ModalRoot, platform, FormItem, FormLayoutGroup, Calendar, Button, Div, Input } from "@vkontakte/vkui";
 import {EModals} from "../consts/modals/modals";
 import {useActiveVkuiLocation, useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
 import {useState} from "react";
 import {CreateUrlForEvent} from "../utils/createUrlForEvent";
 import {QRCodeComponent} from "./qrGenerator";
 import {sendEventInfoToDB} from "../utils/sendEventInfoToDB";
+import "..//App.css";
 
 export const AppModalRoot = () => {
     const {modal: activeModal} = useActiveVkuiLocation()
     const router = useRouteNavigator()
-    const [dateValue, setDateValue] = useState(() => new Date());
+    const [startDateValue, setStartDateValue] = useState(() => new Date());
+    const [endDateValue, setEndDateValue] = useState(() => new Date());
     const [eventName, setEventName] = useState('');
     const [eventDescr, setEventDescrName] = useState('Lorem ipsum')
+    const [eventImgSrc, setImgSrc] = useState('')
     const [enableTime, setEnableTime] = useState(true);
     const [disablePast, setDisablePast] = useState(true);
     const [disableFuture, setDisableFuture] = useState(false);
@@ -29,10 +32,14 @@ export const AppModalRoot = () => {
         setEventDescrName(e.target.value)
     }
 
+    const handleInputSrcChange = (e) => {
+        setImgSrc(e.target.value)
+    }
+
     const submitEventForm = () => {
-        const url = CreateUrlForEvent(dateValue, eventName)
+        const url = CreateUrlForEvent(startDateValue, endDateValue, eventName)
         setUrlForQR(url)
-        sendEventInfoToDB(dateValue, eventName, eventDescr, url)
+        sendEventInfoToDB(startDateValue, endDateValue, eventName, eventDescr, url)
     }
 
     const modalBack = () => {
@@ -51,17 +58,30 @@ export const AppModalRoot = () => {
                         Создать событие
                     </ModalPageHeader>}
             >
-                <FormLayoutGroup>
+                <FormLayoutGroup className={'modal__container'}>
                     <FormItem>
-                        <input type="text" aria-label={'name'} placeholder="Название события" value={eventName} onChange={(e) => handleInputNameChange(e)}/>
+                        <Input
+                            id="event-name"
+                            type="text"
+                            value={eventName}
+                            placeholder={"Название события"}
+                            onChange={(e) => handleInputNameChange(e)}
+                        />
                     </FormItem>
                     <FormItem>
-                        <input type="text" aria-label={'name'} placeholder="Описание события" value={eventDescr} onChange={(e) => handleInputDescrChange(e)}/>
+                        <Input
+                            id="event-descr"
+                            type="text"
+                            value={eventDescr}
+                            placeholder={"Описание события"}
+                            onChange={(e) => handleInputDescrChange(e)}
+                        />
                     </FormItem>
                     <FormItem>
+                        <Div>Дата начала:</Div>
                             <Calendar
-                                value={dateValue}
-                                onChange={setDateValue}
+                                value={startDateValue}
+                                onChange={setStartDateValue}
                                 enableTime={enableTime}
                                 disablePast={disablePast}
                                 disableFuture={disableFuture}
@@ -71,7 +91,30 @@ export const AppModalRoot = () => {
                                 listenDayChangesForUpdate={listenDayChangesForUpdate}
                             />
                     </FormItem>
-                    <Button onClick={submitEventForm}>Создать</Button>
+                    <FormItem>
+                        <Div>Дата конца:</Div>
+                        <Calendar
+                            value={endDateValue}
+                            onChange={setEndDateValue}
+                            enableTime={enableTime}
+                            disablePast={disablePast}
+                            disableFuture={disableFuture}
+                            disablePickers={disablePickers}
+                            showNeighboringMonth={showNeighboringMonth}
+                            size={size}
+                            listenDayChangesForUpdate={listenDayChangesForUpdate}
+                        />
+                    </FormItem>
+                    <FormItem>
+                        <Input
+                            id="event-descr"
+                            type="text"
+                            value={eventImgSrc}
+                            placeholder={"Вставьте url картинки сюда"}
+                            onChange={(e) => handleInputSrcChange(e)}
+                        />
+                    </FormItem>
+                    <Button onClick={submitEventForm} style={{width: '95%', alignSelf: 'center'}}>Создать</Button>
                 </FormLayoutGroup>
                 {urlForQR && <QRCodeComponent props={urlForQR}/>}
             </ModalPage>
