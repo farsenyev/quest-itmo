@@ -1,4 +1,14 @@
-import { makeRequest } from "../makeRequest";
+export const getUser = async (vkUserId: number) => {
+    try {
+        const response = await fetch(
+            `http://localhost:3000/api/user/${vkUserId}`,
+            { method: "GET" },
+        );
 
-export const getUser = (vkUserId: number) =>
-    makeRequest("GET", `/api/user/${vkUserId}`);
+        const result = await response.json();
+
+        return result;
+    } catch (err) {
+        return Promise.reject(err);
+    }
+};

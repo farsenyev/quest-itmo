@@ -4,17 +4,17 @@ export const makeRequest = async (
     params?: { [key: string]: unknown },
 ) => {
     try {
-        const response = await fetch(
-            `${import.meta.env.SERVER_BASE_URL}${url}`,
-            {
-                method,
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `VK ${btoa(window.location.search)}`,
-                    ...params,
-                },
+        console.log(`FETCH URL: ${"http://localhost:3000"}${url}`);
+
+        const response = await fetch(`${"http://localhost:3000"}${url}`, {
+            method,
+            body,
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `VK ${btoa(window.location.search)}`,
+                ...params,
             },
-        );
+        });
 
         const result = await response.json();
 

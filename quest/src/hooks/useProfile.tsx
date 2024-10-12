@@ -1,6 +1,7 @@
 import bridge from "@vkontakte/vk-bridge";
 import { useProfileContext } from "src/contexts/profileContext";
 import { getUser } from "src/api/user/getUser";
+import { createNewUser } from "src/api/user/createNewUser";
 
 export const useProfile = () => {
     const { profile, setProfile } = useProfileContext();
@@ -12,11 +13,21 @@ export const useProfile = () => {
 
         const userInfo = await bridge.send("VKWebAppGetUserInfo");
 
-        console.log(userInfo.id);
+        const fetchedUser = await getUser(userInfo.id);
 
-        // const fetchedUser = await getUser(userInfo.id);
+        if (fetchedUser === null) {
+            // const response = await createNewUser(userInfo.id);
+            console.log("New user");
+        }
 
-        // console.log(fetchedUser);
+        if (fetchedUser.error) {
+            console.log("Error");
+            return;
+        }
+
+        const { role, verified } = fetchedUser;
+
+        setProfile({ ...userInfo, role, verified });
     };
 
     return { initProfile };
