@@ -13,7 +13,7 @@ import { EPanels } from "./consts/panels/panels";
 import { EViews } from "./consts/views/veiws";
 import { HomePanel } from "./panels/home/home";
 import { CommunityPanel } from "./panels/community/community";
-import { ProfilePanel } from "./panels/profile/profile";
+// import { ProfilePanel } from "./panels/profileOld/profileOld";
 import { QuestsPanel } from "./panels/quests/quests";
 import { CategoryPanel } from "./panels/category/category";
 import { EventsPanel } from "./panels/events/events";
@@ -22,10 +22,11 @@ import { AppModalRoot } from "./components/appModalRoot";
 import { EventPanel } from "./panels/event/event";
 import { useProfile } from "./hooks/useProfile";
 import { useEffect } from "react";
-import bridge from "@vkontakte/vk-bridge";
+// import bridge from "@vkontakte/vk-bridge";
 import { QuestPanel } from "./panels/quest/quest";
 import "./App.css";
 import { usePlatform } from "./hooks/usePlatform";
+import { ProfilePanel } from "./panels/profile/profile";
 
 export const App = () => {
     const { initProfile } = useProfile();
@@ -38,7 +39,7 @@ export const App = () => {
     usePlatform();
 
     useEffect(() => {
-        // initProfile();
+        initProfile();
         //     bridge
         //         .send("VKWebAppShowSlidesSheet", {
         //             slides: [
