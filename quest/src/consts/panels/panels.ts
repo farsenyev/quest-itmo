@@ -1,5 +1,6 @@
 export const enum EPanels {
-    HOME = "home",
+    ONBOARDING = "onboarding",
+    QUIZ = "quiz",
     COMMUNITY = "community",
     PROFILE = "profile",
     QUESTS = "quests",
