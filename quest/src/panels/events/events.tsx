@@ -69,7 +69,7 @@ export const EventsPanel = (props: PanelProps) => {
                     text="Qr успешно отсканирован. Держи 10 токенов"
                 />,
             );
-        setProfile({...profile, tokenAmount + 10})
+        if (profile) setProfile({...profile, tokenAmount: profile.tokenAmount + 10})
     };
 
     const createEvent = () => {
