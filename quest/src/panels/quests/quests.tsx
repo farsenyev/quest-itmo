@@ -1,4 +1,4 @@
-import {Panel, PanelHeader, PanelProps, CardScroll, Group, Card, Tappable, Header} from "@vkontakte/vkui";
+import {Panel, PanelHeader, PanelProps, CardScroll, Group, Card, Tappable, Header, ContentCard} from "@vkontakte/vkui";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 import { TQuest } from "src/types/quest";
 import { CustomGrid } from "src/components/CustomGrid/CustomGrid";
@@ -53,26 +53,32 @@ const quests: TQuest[] = [
 
 const links = [
     {
+        name: 'Официальный сайт Университета ИТМО',
         url: 'https://itmo.ru/ru/',
         descr:'Официальный сайт Университета ИТМО содержит полную информацию об университете, структурных подразделениях и контактах.'
     },
     {
+        name: 'Международный портал Университета',
         url: 'https://news.itmo.ru/en/',
         descr: 'Международный портал Университета — англоязычный ресурс для абитуриентов, студентови сотрудников, где рассказывается о жизни университета.'
     },
     {
+        name: 'ITMO.NEWS',
         url: 'https://news.itmo.ru/ru/',
         descr: 'Новостной портал ITMO.NEWS рассказывает о событиях как внутри университета,так и во внешней среде.'
     },
     {
+        name: 'ИСУ',
         url: 'https://news.itmo.ru/ru/', //TODD: LINK TO ИСУ
         descr: 'Информационная система университета (ИСУ) — корпоративный портал, доступный только для сотрудников ИТМО. Регистрация доступна при предоставлении логина и пароля послеоформления документов о приеме на работу.'
     },
     {
+        name: 'Наука в университете',
         url: 'https://science.itmo.ru/' ,
         descr: 'Наука в университете — путеводитель в мире научно-исследовательских и опытно конструкторских работ.'
     },
     {
+        name: 'Портал для сотрудников',
         url: 'https://team.itmo.ru/',
         descr: 'Портал для сотрудников, адаптация, запись на курсы повышения квалификации'
     }
@@ -106,9 +112,9 @@ export const QuestsPanel = (props: PanelProps) => {
                 </Group>
                 <Group header={<Header>Полезные ссылки</Header>}>
                     {links.map((link, i) => (
-                            <Tappable activeMode={"background"} hasActive hasHover key={link.descr}>
-                                <a href={link.url} style={{color: quests[i].color, textDecoration: 'none'}}>{link.descr}</a>
-                            </Tappable>
+                        <a href={link.url} style={{color: quests[i].color, textDecoration: 'none'}} target={'_blank'}>
+                            <ContentCard caption={link.descr} header={link.name} key={link.descr} draggable marginHeight={10}/>
+                        </a>
                     ))}
                     <Tappable onClick={() => router.push('/develop')} key={'store'}> Магазин </Tappable>
                 </Group>
