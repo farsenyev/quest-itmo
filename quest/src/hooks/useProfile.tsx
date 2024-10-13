@@ -1,12 +1,16 @@
 import bridge from "@vkontakte/vk-bridge";
+import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 import { useProfileContext } from "src/contexts/profileContext";
 
 export const useProfile = () => {
     const { profile, setProfile } = useProfileContext();
 
+    const router = useRouteNavigator();
+
     const initProfile = async () => {
         try {
             if (profile) {
+                router.replace("/quests");
                 return;
             }
 
@@ -19,6 +23,7 @@ export const useProfile = () => {
             const responseJSON = await response.json();
 
             if (!responseJSON) {
+                router.replace("/onboarding");
                 return;
             }
 
@@ -30,6 +35,7 @@ export const useProfile = () => {
                 role: fetchedUser.role,
                 verified: true,
             });
+            router.replace("/quests");
         } catch (err) {
             if (err instanceof Error) {
                 throw new Error(err.message);
@@ -44,8 +50,6 @@ export const useProfile = () => {
             const userInfo = await bridge.send("VKWebAppGetUserInfo");
 
             const newUser = { vkUserId: userInfo.id, role };
-
-            console.log(newUser);
 
             const response = await fetch(
                 `https://43ntp6jp-3000.euw.devtunnels.ms/api/user/new`,

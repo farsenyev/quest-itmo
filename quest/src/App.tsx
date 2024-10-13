@@ -21,12 +21,13 @@ import { ProfilePanel } from "./panels/profile/profile";
 import { DevelopPanel } from "./panels/develop/develop";
 import { OnboardingPanel } from "./panels/onboarding/OnboardingPanel";
 import { QuizFormPanel } from "./panels/quizForm/QuizFormPanel";
+import { HomePanel } from "./panels/home/home";
 
 export const App = () => {
     const { initProfile } = useProfile();
     const {
         view: activeView = EViews.ONBOARDING,
-        panel: activePanel = EPanels.ONBOARDING,
+        panel: activePanel = EPanels.HOME,
     } = useActiveVkuiLocation();
     const routerPopout = usePopout();
 
@@ -52,6 +53,7 @@ export const App = () => {
                         <QuizPanel id={EPanels.QUIZ} />
                         <QuizFormPanel id={EPanels.QUIZ_FORM} />
                         <OnboardingPanel id={EPanels.ONBOARDING} />
+                        <HomePanel id={EPanels.HOME} />
                     </View>
                     <View id={EViews.COMMUNITY} activePanel={activePanel}>
                         <CommunityPanel id={EPanels.COMMUNITY} />

@@ -18,11 +18,11 @@ export const OnboardingPanel = (props: PanelProps) => {
 
     const router = useRouteNavigator();
 
-    const { profile } = useProfileContext();
+    // const { profile } = useProfileContext();
 
-    if (profile) {
-        router.replace("/quests");
-    }
+    // if (profile) {
+    //     router.replace("/quests");
+    // }
 
     const steps = [
         {

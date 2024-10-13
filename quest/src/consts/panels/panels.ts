@@ -1,4 +1,5 @@
 export const enum EPanels {
+    HOME = "home",
     ONBOARDING = "onboarding",
     QUIZ = "quiz",
     QUIZ_FORM = "quiz_form",
@@ -8,5 +9,5 @@ export const enum EPanels {
     QUEST = "quest",
     EVENTS = "events",
     EVENT = "event",
-    DEVELOP = "develop"
+    DEVELOP = "develop",
 }

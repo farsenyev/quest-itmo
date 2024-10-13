@@ -5,6 +5,11 @@ import { EViews } from "./consts/views/veiws";
 export const router = createBrowserRouter([
     {
         path: "/",
+        panel: EPanels.HOME,
+        view: EViews.ONBOARDING,
+    },
+    {
+        path: "/onboarding",
         panel: EPanels.ONBOARDING,
         view: EViews.ONBOARDING,
     },
