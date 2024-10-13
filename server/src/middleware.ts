@@ -16,7 +16,7 @@ export default function middleware(req: Request) {
   // Handle CORS headers
   const origin = req.headers.get('origin');
 
-  if (origin && allowedOrigins.includes(origin)) {
+  if (origin) {
     response.headers.set('Access-Control-Allow-Origin', origin);
     response.headers.set(
       'Access-Control-Allow-Methods',
