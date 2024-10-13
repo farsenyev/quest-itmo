@@ -18,6 +18,7 @@ import { useProfile } from "./hooks/useProfile";
 import { QuestPanel } from "./panels/quest/quest";
 import { usePlatform } from "./hooks/usePlatform";
 import { ProfilePanel } from "./panels/profile/profile";
+import {DevelopPanel} from "./panels/develop/develop";
 import { OnboardingPanel } from "./panels/onboarding/OnboardingPanel";
 
 export const App = () => {
@@ -64,6 +65,7 @@ export const App = () => {
                     <View id={EViews.EVENTS} activePanel={activePanel}>
                         <EventsPanel id={EPanels.EVENTS} />
                         <EventPanel id={EPanels.EVENT} />
+                        <DevelopPanel id={EPanels.DEVELOP}/>
                     </View>
                 </Epic>
             </SplitCol>

@@ -9,9 +9,10 @@ interface Props extends BannerProps {
 
 export const QuestCard = (props: Props) => {
     const {
-        quest: { title, Icon },
+        quest: { title, Icon, color },
         ...rest
     } = props;
+    console.log(color)
     return (
         <Banner
             className={styles["QuestCard"]}
@@ -19,7 +20,10 @@ export const QuestCard = (props: Props) => {
             asideMode="expand"
             before={Icon}
             header={title}
+            mode='image'
+            background={<div style={{backgroundColor: color}}/>}
             {...rest}
+            style={{textWrap: 'nowrap', display: 'inline-block', width: '12rem', height: '12rem'}}
         />
     );
 };

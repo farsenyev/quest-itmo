@@ -43,4 +43,9 @@ export const router = createBrowserRouter([
         panel: EPanels.EVENT,
         view: EViews.EVENTS,
     },
+    {
+        path: "/develop",
+        panel: EPanels.DEVELOP,
+        view: EViews.EVENTS,
+    },
 ]);
