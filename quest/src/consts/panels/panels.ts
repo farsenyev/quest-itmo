@@ -6,4 +6,5 @@ export const enum EPanels {
     QUEST = "quest",
     EVENTS = "events",
     EVENT = "event",
+    DEVELOP = "develop"
 }
