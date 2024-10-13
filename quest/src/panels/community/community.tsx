@@ -32,7 +32,7 @@ export const CommunityPanel = (props: PanelProps) => {
                             </>
                         }
                         after={
-                            <p>{leader.points} tokens</p>
+                            <p>{leader.points} mee</p>
                         }
                     >
                         {leader.name}
