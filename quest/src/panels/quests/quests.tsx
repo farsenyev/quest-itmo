@@ -54,7 +54,7 @@ const quests: TQuest[] = [
 const links = [
     {
         url: 'https://itmo.ru/ru/',
-        desrc:'Официальный сайт Университета ИТМО содержит полную информацию об университете, структурных подразделениях и контактах.'
+        descr:'Официальный сайт Университета ИТМО содержит полную информацию об университете, структурных подразделениях и контактах.'
     },
     {
         url: 'https://news.itmo.ru/en/',
@@ -106,11 +106,11 @@ export const QuestsPanel = (props: PanelProps) => {
                 </Group>
                 <Group header={<Header>Полезные ссылки</Header>}>
                     {links.map((link, i) => (
-                            <Tappable activeMode={"background"} hasActive hasHover>
+                            <Tappable activeMode={"background"} hasActive hasHover key={link.descr}>
                                 <a href={link.url} style={{color: quests[i].color, textDecoration: 'none'}}>{link.descr}</a>
                             </Tappable>
                     ))}
-                    <Tappable onClick={() => router.push('/develop')}> Магазин </Tappable>
+                    <Tappable onClick={() => router.push('/develop')} key={'store'}> Магазин </Tappable>
                 </Group>
             </CustomGrid>
         </Panel>
