@@ -36,8 +36,7 @@ body {
     color: var(--color-text);
 }
 
-
-.modal__container{
+.modal__container {
     display: flex;
     flex-direction: column;
     align-content: center;

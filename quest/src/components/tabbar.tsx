@@ -1,4 +1,4 @@
-import { Tabbar, TabbarItem } from "@vkontakte/vkui";
+import { Tabbar, TabbarItem, TabbarProps } from "@vkontakte/vkui";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 
 import { EViews } from "../consts/views/veiws";
@@ -9,16 +9,16 @@ import {
     Icon28Users3Outline,
 } from "@vkontakte/icons";
 
-interface Props {
+interface Props extends TabbarProps {
     activeStory: EViews;
 }
 
 export const AppTabBar = (props: Props) => {
-    const { activeStory } = props;
+    const { activeStory, ...rest } = props;
     const routerNavigator = useRouteNavigator();
 
     return (
-        <Tabbar>
+        <Tabbar {...rest}>
             <TabbarItem
                 onClick={() => void routerNavigator.push("/quests")}
                 selected={activeStory === EViews.QUESTS}

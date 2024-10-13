@@ -10,53 +10,65 @@ import {
     Div,
     Input,
     PanelHeaderButton,
-    PanelHeaderClose, useAdaptivityWithJSMediaQueries, useAdaptivityConditionalRender
+    PanelHeaderClose,
+    useAdaptivityWithJSMediaQueries,
+    useAdaptivityConditionalRender,
 } from "@vkontakte/vkui";
-import {EModals} from "../consts/modals/modals";
-import {useActiveVkuiLocation, useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
-import {useState} from "react";
-import {CreateUrlForEvent} from "../utils/createUrlForEvent";
-import {sendEventInfoToDB} from "../utils/sendEventInfoToDB";
+import { EModals } from "../consts/modals/modals";
+import {
+    useActiveVkuiLocation,
+    useRouteNavigator,
+} from "@vkontakte/vk-mini-apps-router";
+import { useState } from "react";
+import { CreateUrlForEvent } from "../utils/createUrlForEvent";
+import { sendEventInfoToDB } from "../utils/sendEventInfoToDB";
 import "..//App.css";
-import {useEventContext} from "../contexts/eventContext";
-import {TEvent} from "../types/event";
+import { useEventContext } from "../contexts/eventContext";
+import { TEvent } from "../types/event";
 
 export const AppModalRoot = () => {
-    const {modal: activeModal} = useActiveVkuiLocation()
-    const router = useRouteNavigator()
+    const { modal: activeModal } = useActiveVkuiLocation();
+    const router = useRouteNavigator();
     const [startDateValue, setStartDateValue] = useState(() => new Date());
     const [endDateValue, setEndDateValue] = useState(() => new Date());
-    const [eventName, setEventName] = useState('');
-    const [eventDescr, setEventDescrName] = useState('')
-    const [eventImgSrc, setImgSrc] = useState('')
+    const [eventName, setEventName] = useState("");
+    const [eventDescr, setEventDescrName] = useState("");
+    const [eventImgSrc, setImgSrc] = useState("");
     const [enableTime, setEnableTime] = useState(true);
     const [disablePast, setDisablePast] = useState(true);
     const [disableFuture, setDisableFuture] = useState(false);
     const [disablePickers, setDisablePickers] = useState(false);
     const [showNeighboringMonth, setShowNeighboringMonth] = useState(false);
-    const [size, setSize] = useState('m');
-    const [listenDayChangesForUpdate, setListenDayChangesForUpdate] = useState(true);
-    const [urlForQR, setUrlForQR] = useState('')
-    const {events, setEvents} = useEventContext()
+    const [size, setSize] = useState("m");
+    const [listenDayChangesForUpdate, setListenDayChangesForUpdate] =
+        useState(true);
+    const [urlForQR, setUrlForQR] = useState("");
+    const { events, setEvents } = useEventContext();
     const { isDesktop } = useAdaptivityWithJSMediaQueries();
     const { sizeX } = useAdaptivityConditionalRender();
 
     const handleInputNameChange = (e) => {
-        setEventName(e.target.value)
-    }
+        setEventName(e.target.value);
+    };
 
     const handleInputDescrChange = (e) => {
-        setEventDescrName(e.target.value)
-    }
+        setEventDescrName(e.target.value);
+    };
 
     const handleInputSrcChange = (e) => {
-        setImgSrc(e.target.value)
-    }
+        setImgSrc(e.target.value);
+    };
 
     const submitEventForm = () => {
-        const url = CreateUrlForEvent(startDateValue, endDateValue, eventName)
-        setUrlForQR(url)
-        sendEventInfoToDB(startDateValue, endDateValue, eventName, eventDescr, url)
+        const url = CreateUrlForEvent(startDateValue, endDateValue, eventName);
+        setUrlForQR(url);
+        sendEventInfoToDB(
+            startDateValue,
+            endDateValue,
+            eventName,
+            eventDescr,
+            url,
+        );
         const eventInfo: TEvent = {
             id: 10000,
             endDate: endDateValue,
@@ -64,15 +76,15 @@ export const AppModalRoot = () => {
             authorId: 10000,
             title: eventName,
             description: eventDescr,
-            url: url
-        }
-        if (events) setEvents([...events, eventInfo])
-        router.hideModal()
-    }
+            url: url,
+        };
+        if (events) setEvents([...events, eventInfo]);
+        router.hideModal();
+    };
 
     const modalBack = () => {
-        router.hideModal()
-    }
+        router.hideModal();
+    };
 
     return (
         <ModalRoot activeModal={activeModal}>
@@ -80,13 +92,10 @@ export const AppModalRoot = () => {
                 id={EModals.CREATE_EVENT}
                 onClose={modalBack}
                 settlingHeight={100}
-                hideCloseButton={platform === 'ios'}
-                header={
-                    <ModalPageHeader>
-                        Создать событие
-                    </ModalPageHeader>}
+                hideCloseButton={platform === "ios"}
+                header={<ModalPageHeader>Создать событие</ModalPageHeader>}
             >
-                <FormLayoutGroup className={'modal__container'}>
+                <FormLayoutGroup className={"modal__container"}>
                     <FormItem>
                         <Input
                             id="event-name"
@@ -116,7 +125,9 @@ export const AppModalRoot = () => {
                             disablePickers={disablePickers}
                             showNeighboringMonth={showNeighboringMonth}
                             size={size}
-                            listenDayChangesForUpdate={listenDayChangesForUpdate}
+                            listenDayChangesForUpdate={
+                                listenDayChangesForUpdate
+                            }
                         />
                     </FormItem>
                     <FormItem>
@@ -130,7 +141,9 @@ export const AppModalRoot = () => {
                             disablePickers={disablePickers}
                             showNeighboringMonth={showNeighboringMonth}
                             size={size}
-                            listenDayChangesForUpdate={listenDayChangesForUpdate}
+                            listenDayChangesForUpdate={
+                                listenDayChangesForUpdate
+                            }
                         />
                     </FormItem>
                     <FormItem>
@@ -142,7 +155,12 @@ export const AppModalRoot = () => {
                             onChange={(e) => handleInputSrcChange(e)}
                         />
                     </FormItem>
-                    <Button onClick={submitEventForm} style={{width: '95%', alignSelf: 'center'}}>Создать</Button>
+                    <Button
+                        onClick={submitEventForm}
+                        style={{ width: "95%", alignSelf: "center" }}
+                    >
+                        Создать
+                    </Button>
                 </FormLayoutGroup>
             </ModalPage>
 
@@ -150,20 +168,24 @@ export const AppModalRoot = () => {
                 id={EModals.CHECK_EVENT}
                 onClose={modalBack}
                 settlingHeight={100}
-                height={isDesktop ? 250 : '70%'}
-                hideCloseButton={platform === 'ios'}
+                height={isDesktop ? 250 : "70%"}
+                hideCloseButton={platform === "ios"}
                 header={
                     <ModalPageHeader
                         before={
                             sizeX.compact &&
-                            platform === 'android' && (
-                                <PanelHeaderClose className={sizeX.compact.className} onClick={modalBack}/>
+                            platform === "android" && (
+                                <PanelHeaderClose
+                                    className={sizeX.compact.className}
+                                    onClick={modalBack}
+                                />
                             )
                         }
                         after={
-                            platform === 'ios' && (
-                                <PanelHeaderButton onClick={modalBack}>
-                                </PanelHeaderButton>
+                            platform === "ios" && (
+                                <PanelHeaderButton
+                                    onClick={modalBack}
+                                ></PanelHeaderButton>
                             )
                         }
                     >
@@ -173,7 +195,6 @@ export const AppModalRoot = () => {
             >
                 random qr code and event date with description
             </ModalPage>
-
         </ModalRoot>
-    )
-}
+    );
+};

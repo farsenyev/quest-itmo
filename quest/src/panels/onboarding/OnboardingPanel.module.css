@@ -1,0 +1,45 @@
+.StepContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    max-width: 350px;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+.Step {
+    display: flex;
+    flex-direction: column;
+    row-gap: 32px;
+    align-items: center;
+    text-align: center;
+    text-wrap: pretty;
+}
+
+.Content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+}
+
+.TextContent {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+
+.Subtitle {
+    color: var(--vkui--color_text_secondary);
+}
+
+.Controls {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.Icon {
+}
