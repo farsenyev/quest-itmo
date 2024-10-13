@@ -36,7 +36,7 @@ export const ProfilePanel = (props: PanelProps) => {
                     <Group>
                         <Flex direction="row" justify="space-between">
                             <Cell
-                                before={<Avatar />}
+                                before={<Avatar scr={profile?.photo_100}/>}
                                 subtitle={`${profile ? profile.role : "Студент"}`}
                             >
                                 {`${profile?.first_name} ${profile?.last_name}`}
