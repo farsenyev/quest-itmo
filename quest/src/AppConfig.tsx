@@ -8,8 +8,7 @@ import {
 } from "@vkontakte/vk-bridge-react";
 import { AdaptivityProvider, ConfigProvider, AppRoot } from "@vkontakte/vkui";
 import { RouterProvider } from "@vkontakte/vk-mini-apps-router";
-import { ContextProvider } from "./contexts/contextProvider";
-
+import { ContextProvider } from "./contexts/ContextProvider";
 import { transformVKBridgeAdaptivity } from "./utils/transformVKBridgeAdaptivity";
 
 import { App } from "./App";

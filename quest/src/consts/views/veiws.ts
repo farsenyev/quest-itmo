@@ -1,5 +1,5 @@
 export const enum EViews {
-    HOME = "home",
+    ONBOARDING = "onboarding",
     COMMUNITY = "community",
     PROFILE = "profile",
     QUESTS = "quests",

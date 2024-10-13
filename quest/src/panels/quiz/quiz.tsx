@@ -2,7 +2,7 @@ import { Panel, PanelProps } from "@vkontakte/vkui";
 import { Button, ButtonGroup } from "@vkontakte/vkui";
 import { FormLayoutGroup, FormItem, Input, Select } from "@vkontakte/vkui";
 import "@vkontakte/vkui/dist/vkui.css";
-import styles from "./Home.module.css";
+import styles from "./quiz.module.css";
 import { useState } from "react";
 
 const faculty = [
@@ -26,14 +26,14 @@ const roles = [
     { value: "5", label: "Сотрудники кадров" },
 ];
 
-export const HomePanel = (props: PanelProps) => {
+export const QuizPanel = (props: PanelProps) => {
     const [role, setRole] = useState("");
     const { ...rest } = props;
 
     return (
         <Panel className={styles["home__panel"]} {...rest} disableBackground>
-            <h1 style={{color: '#eee'}}>Добро пожаловать в ITMO!</h1>
-            <ButtonGroup 
+            <h1 style={{ color: "#eee" }}>Добро пожаловать в ITMO!</h1>
+            <ButtonGroup
                 mode="vertical"
                 gap="m"
                 className={styles["choose-btn"]}
@@ -49,7 +49,7 @@ export const HomePanel = (props: PanelProps) => {
                     Студент
                 </Button>
                 <Button
-                      className={styles["group__btn"]}
+                    className={styles["group__btn"]}
                     onClick={() => setRole("employee")}
                     size="l"
                     appearance="accent"
@@ -60,7 +60,7 @@ export const HomePanel = (props: PanelProps) => {
             </ButtonGroup>
 
             {role && role === "student" && (
-                <FormLayoutGroup className={styles["form"]} >
+                <FormLayoutGroup className={styles["form"]}>
                     <FormItem htmlFor="name" top="Номер ИСУ">
                         <Input id="number" />
                     </FormItem>
