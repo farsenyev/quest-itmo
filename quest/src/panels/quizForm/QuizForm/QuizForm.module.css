@@ -1,0 +1,19 @@
+.QuizForm {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.QuizContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.Title {
+    text-align: center;
+}
+
+.Controls {
+    padding-inline: 16px;
+}
