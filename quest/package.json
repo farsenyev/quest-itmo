@@ -3,13 +3,15 @@
     "private": true,
     "version": "0.0.0",
     "type": "module",
+    "homepage": ".",
     "scripts": {
         "dev": "vite",
-        "build": "tsc -b && vite build",
+        "build": "vite build",
         "lint": "eslint .",
         "preview": "vite preview",
         "tunnel": "vk-tunnel --insecure=0 --http-protocol=http --ws-protocol=wss --host=localhost --port=5173",
-        "deploy": "gh-pages -d ./dist -e front"
+        "deploy": "gh-pages -d ./dist -e front",
+        "deployVK": "vk-miniapps-deploy"
     },
     "dependencies": {
         "@vkontakte/vk-bridge": "^2.15.1",

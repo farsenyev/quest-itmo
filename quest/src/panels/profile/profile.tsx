@@ -1,7 +1,4 @@
 import {
-    SimpleCell,
-    Header,
-    Image,
     Panel,
     PanelHeader,
     PanelProps,
@@ -10,13 +7,7 @@ import {
     Flex,
     Cell,
     Avatar,
-    CardGrid,
     Button,
-    Card,
-    Tabs,
-    TabsItem,
-    PanelHeaderButton,
-    Div,
 } from "@vkontakte/vkui";
 import { useProfileContext } from "src/contexts/profileContext";
 import {
@@ -26,11 +17,13 @@ import {
 } from "@vkontakte/icons";
 
 import { AchievementsPanel } from "./components/achievements";
+import {useRouteNavigator} from "@vkontakte/vk-mini-apps-router";
 
 
 
 export const ProfilePanel = (props: PanelProps) => {
     const { ...rest } = props;
+    const router = useRouteNavigator()
 
     const { profile } = useProfileContext();
  
@@ -61,6 +54,7 @@ export const ProfilePanel = (props: PanelProps) => {
                         mode="outline"
                         align="center"
                         marginWidth={20}
+                        onClick={() => router.push('/develop')}
                     >
                         Форма для получения доступа
                     </Button>
