@@ -7,7 +7,7 @@ import {
 } from "@vkontakte/vk-mini-apps-router";
 import { EPanels } from "./consts/panels/panels";
 import { EViews } from "./consts/views/veiws";
-import { QuizPanel } from "./panels/quiz/quiz";
+import { QuizPanel } from "./panels/quiz/QuizPanel";
 import { CommunityPanel } from "./panels/community/community";
 import { QuestsPanel } from "./panels/quests/quests";
 import { EventsPanel } from "./panels/events/events";
@@ -20,6 +20,7 @@ import { usePlatform } from "./hooks/usePlatform";
 import { ProfilePanel } from "./panels/profile/profile";
 import {DevelopPanel} from "./panels/develop/develop";
 import { OnboardingPanel } from "./panels/onboarding/OnboardingPanel";
+import { QuizFormPanel } from "./panels/quizForm/QuizFormPanel";
 
 export const App = () => {
     const { initProfile } = useProfile();
@@ -50,6 +51,7 @@ export const App = () => {
                 >
                     <View id={EViews.ONBOARDING} activePanel={activePanel}>
                         <QuizPanel id={EPanels.QUIZ} />
+                        <QuizFormPanel id={EPanels.QUIZ_FORM} />
                         <OnboardingPanel id={EPanels.ONBOARDING} />
                     </View>
                     <View id={EViews.COMMUNITY} activePanel={activePanel}>

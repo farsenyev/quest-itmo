@@ -14,6 +14,12 @@ export const router = createBrowserRouter([
         view: EViews.ONBOARDING,
     },
     {
+        path: "/quiz/form/:role",
+        panel: EPanels.QUIZ_FORM,
+        view: EViews.ONBOARDING,
+    },
+
+    {
         path: "/community",
         panel: EPanels.COMMUNITY,
         view: EViews.COMMUNITY,
