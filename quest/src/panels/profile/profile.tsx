@@ -12,15 +12,28 @@ import {
     Avatar,
     CardGrid,
     Button,
+    Card,
+    Tabs,
+    TabsItem,
+    PanelHeaderButton,
+    Div,
 } from "@vkontakte/vkui";
 import { useProfileContext } from "src/contexts/profileContext";
-import { Icon20TestCoinOutline } from "@vkontakte/icons";
+import {
+    Icon20CoinsOutline,
+    
+    
+} from "@vkontakte/icons";
+
+import { AchievementsPanel } from "./components/achievements";
+
+
 
 export const ProfilePanel = (props: PanelProps) => {
     const { ...rest } = props;
 
     const { profile } = useProfileContext();
-
+ 
     return (
         <Panel {...rest} disableBackground>
             <PanelHeader fixed>Profile</PanelHeader>
@@ -29,68 +42,19 @@ export const ProfilePanel = (props: PanelProps) => {
                 <Panel id="list">
                     <Group>
                         <Flex direction="row" justify="space-between">
-                            <Cell before={<Avatar />} subtitle="Студент">
+                            <Cell
+                                before={<Avatar />}
+                                subtitle={`${profile ? profile.role : "Студент"}`}
+                            >
                                 Иван Итмошников
                             </Cell>
-                            <Cell>{` ${profile?.tokenAmount} Токенов`}</Cell>
+                            <Cell after={<Icon20CoinsOutline />}>
+                                {` ${profile ? profile.tokenAmount : 10} Mee `}{" "}
+                            </Cell>
                         </Flex>
                     </Group>
 
-                    <Flex justify="center"></Flex>
-
-                    <Flex justify="center"></Flex>
-                    <Group mode="plain">
-                        <Flex justify="center" align="center">
-                            <CardGrid size="l">
-                                <div>
-                                    <Group
-                                        header={
-                                            <Header mode="secondary">
-                                                Достижения
-                                            </Header>
-                                        }
-                                    >
-                                        <SimpleCell
-                                            style={{ padding: 16 }}
-                                            before={
-                                                <Image
-                                                    src={
-                                                        "https://vkma-course-dishes-backend.prod.kapps.vk-apps.com/storage/achivements/8orders.png"
-                                                    }
-                                                />
-                                            }
-                                        >
-                                            Получить первые баллы
-                                        </SimpleCell>
-                                        <SimpleCell
-                                            style={{ padding: 16 }}
-                                            before={
-                                                <Image
-                                                    src={
-                                                        "https://vkma-course-dishes-backend.prod.kapps.vk-apps.com/storage/achivements/5orders.png"
-                                                    }
-                                                />
-                                            }
-                                        >
-                                            Посетить мероприятие 5 раз
-                                        </SimpleCell>
-                                        <SimpleCell
-                                            style={{ padding: 16 }}
-                                            before={
-                                                <Image
-                                                    src={
-                                                        "https://vkma-course-dishes-backend.prod.kapps.vk-apps.com/storage/achivements/first_order.png"
-                                                    }
-                                                />
-                                            }
-                                        >
-                                            Посетить мероприятие 15 раз
-                                        </SimpleCell>
-                                    </Group>
-                                </div>
-                            </CardGrid>
-                        </Flex>
-                    </Group>
+                    <AchievementsPanel />
 
                     <Button
                         size="l"
