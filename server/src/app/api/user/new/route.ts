@@ -15,7 +15,7 @@ export const POST = async (req: Request) => {
     }
 
     const newUser = await db.user.create({
-      data: { vk_user_id: vkUserId, role },
+      data: { vkUserId, role },
     });
 
     return createResponse({ data: newUser, status: 200 });

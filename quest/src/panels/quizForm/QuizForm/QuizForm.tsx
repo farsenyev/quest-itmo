@@ -1,3 +1,4 @@
+import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 import styles from "./QuizForm.module.css";
 
 import {
@@ -41,8 +42,12 @@ interface QuizFormProps extends BaseFormProps {
 export const QuizForm = (props: QuizFormProps) => {
     const { role, ...rest } = props;
 
+    const router = useRouteNavigator();
+
     const onSave: React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
+
+        router.replace("/quests");
     };
 
     return (
@@ -86,6 +91,7 @@ export const QuizForm = (props: QuizFormProps) => {
                             id="select-faculty-id"
                             placeholder="Сфера деятельности"
                             options={roles}
+                            required
                         />
                     </FormItem>
                 </FormLayoutGroup>
