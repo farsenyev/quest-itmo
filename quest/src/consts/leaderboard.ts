@@ -6,7 +6,7 @@ export const leaders = [
     },
     {
         name: 'Альбус Дамбдор',
-        imgSrc: 'https://static.wikia.nocookie.net/harrypotter/images/0/04/Albus_Dumbledore_%28HBP_promo%29_1.jpg/revision/latest?cb=20150806040736&path-prefix=ru',
+        imgSrc: 'https://pm1.aminoapps.com/7022/ff70108748feb68b1690b96aa9a9388233c672fdr1-306-391v2_00.jpg',
         points: 999
     },
     {

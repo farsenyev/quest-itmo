@@ -39,7 +39,7 @@ export const ProfilePanel = (props: PanelProps) => {
                                 before={<Avatar />}
                                 subtitle={`${profile ? profile.role : "Студент"}`}
                             >
-                                Иван Итмошников
+                                {`${profile?.first_name} ${profile?.last_name}`}
                             </Cell>
                             <Cell after={<Icon20CoinsOutline />}>
                                 {` ${profile ? profile.tokenAmount : 10} Mee `}{" "}
