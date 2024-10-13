@@ -1,9 +1,9 @@
-import {Panel, PanelHeader, PanelProps, CardScroll, Group, Card, Tappable, Header, ContentCard} from "@vkontakte/vkui";
+import {Panel, PanelHeader, PanelProps, CardScroll, Group, Card, Tappable, Header, ContentCard, Button } from "@vkontakte/vkui";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
 import { TQuest } from "src/types/quest";
 import { CustomGrid } from "src/components/CustomGrid/CustomGrid";
 import {EcoIcon, FitIcon, FriendlyIcon, HealthyIcon, OpenIcon, ProIcon,} from "./components/icons/icons";
-import { Icon24ChainOutline } from '@vkontakte/icons';
+import { Icon24ShoppingCartOutline } from '@vkontakte/icons';
 
 const quests: TQuest[] = [
     {
@@ -89,7 +89,8 @@ export const QuestsPanel = (props: PanelProps) => {
     const router = useRouteNavigator();
 
     const onQuestCardClick = (questId: number) => {
-        router.push(`/quest/${questId}`);
+        // router.push(`/quest/${questId}`);
+        router.push('/develop')
     };
 
     return (
@@ -110,13 +111,13 @@ export const QuestsPanel = (props: PanelProps) => {
                         ))}
                     </CardScroll>
                 </Group>
-                <Group header={<Header>Полезные ссылки</Header>}>
+                <Group header={<Header>Полезные ссылки</Header>} style={{gap: '10px', display: 'flex', flexDirection: 'column'}}>
                     {links.map((link, i) => (
-                        <a href={link.url} style={{color: quests[i].color, textDecoration: 'none'}} target={'_blank'}>
-                            <ContentCard caption={link.descr} header={link.name} key={link.descr} draggable marginHeight={10}/>
+                        <a href={link.url} style={{color: quests[i].color, textDecoration: 'none', marginTop: '10px'}} target={'_blank'} key={'a+'+link.descr}>
+                            <ContentCard  header={link.name} key={link.descr} draggable marginHeight={10}/>
                         </a>
                     ))}
-                    <Tappable onClick={() => router.push('/develop')} key={'store'}> Магазин </Tappable>
+                    <Button size={'m'} before={<Icon24ShoppingCartOutline/>} onClick={() => router.push('/develop')} key={'store'} > Магазин </Button>
                 </Group>
             </CustomGrid>
         </Panel>
