@@ -1,7 +1,7 @@
 import styles from "./OnboardingPanel.module.css";
 
 import { Panel, PanelHeader, PanelProps } from "@vkontakte/vkui";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Title } from "@vkontakte/vkui";
 import { Button } from "@vkontakte/vkui";
 import { Paragraph } from "@vkontakte/vkui";
@@ -9,6 +9,7 @@ import { FaUniversity } from "react-icons/fa";
 import { PiUsersFour } from "react-icons/pi";
 import { MdOutlineGeneratingTokens } from "react-icons/md";
 import { useRouteNavigator } from "@vkontakte/vk-mini-apps-router";
+import { useProfileContext } from "src/contexts/profileContext";
 
 export const OnboardingPanel = (props: PanelProps) => {
     const { ...rest } = props;
@@ -16,6 +17,12 @@ export const OnboardingPanel = (props: PanelProps) => {
     const [step, setStep] = useState(0);
 
     const router = useRouteNavigator();
+
+    const { profile } = useProfileContext();
+
+    if (profile) {
+        router.replace("/quests");
+    }
 
     const steps = [
         {

@@ -15,7 +15,7 @@ export const POST = async (req: Request) => {
     }
 
     const newUser = await db.user.create({
-      data: { vkUserId, role },
+      data: { vkUserId, role: role.toUpperCase() as 'STUDENT' | 'EMPLOYEE' },
     });
 
     return createResponse({ data: newUser, status: 200 });
