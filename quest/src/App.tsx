@@ -18,7 +18,7 @@ import { useProfile } from "./hooks/useProfile";
 import { QuestPanel } from "./panels/quest/quest";
 import { usePlatform } from "./hooks/usePlatform";
 import { ProfilePanel } from "./panels/profile/profile";
-import {DevelopPanel} from "./panels/develop/develop";
+import { DevelopPanel } from "./panels/develop/develop";
 import { OnboardingPanel } from "./panels/onboarding/OnboardingPanel";
 import { QuizFormPanel } from "./panels/quizForm/QuizFormPanel";
 
@@ -28,7 +28,6 @@ export const App = () => {
         view: activeView = EViews.ONBOARDING,
         panel: activePanel = EPanels.ONBOARDING,
     } = useActiveVkuiLocation();
-    console.log(activeView, activePanel);
     const routerPopout = usePopout();
 
     usePlatform();
@@ -67,7 +66,7 @@ export const App = () => {
                     <View id={EViews.EVENTS} activePanel={activePanel}>
                         <EventsPanel id={EPanels.EVENTS} />
                         <EventPanel id={EPanels.EVENT} />
-                        <DevelopPanel id={EPanels.DEVELOP}/>
+                        <DevelopPanel id={EPanels.DEVELOP} />
                     </View>
                 </Epic>
             </SplitCol>

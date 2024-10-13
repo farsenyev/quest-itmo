@@ -9,6 +9,7 @@ import {
     Select,
     Title,
 } from "@vkontakte/vkui";
+import { useProfile } from "src/hooks/useProfile";
 
 const faculty = [
     { value: "1", label: "Безопасность информационных технологий" },
@@ -44,8 +45,16 @@ export const QuizForm = (props: QuizFormProps) => {
 
     const router = useRouteNavigator();
 
-    const onSave: React.FormEventHandler<HTMLFormElement> = (e) => {
+    const { createProfile } = useProfile();
+
+    const onSave: React.FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
+
+        const user = await createProfile(role as "STUDENT" | "EMPLOYEE");
+
+        if (!user) {
+            return;
+        }
 
         router.replace("/quests");
     };
