@@ -13,24 +13,24 @@ const allowedOrigins = [
 export default function middleware(req: Request) {
   const response = NextResponse.next();
 
-  // Handle CORS headers
-  const origin = req.headers.get('origin');
+  // // Handle CORS headers
+  // const origin = req.headers.get('origin');
 
-  if (origin && allowedOrigins.includes(origin)) {
-    response.headers.set('Access-Control-Allow-Origin', origin);
-    response.headers.set(
-      'Access-Control-Allow-Methods',
-      'GET, POST, PUT, DELETE, OPTIONS'
-    );
-    response.headers.set(
-      'Access-Control-Allow-Headers',
-      'Content-Type, Authorization'
-    );
-  } else {
-    return new NextResponse(JSON.stringify({ error: 'Invalid origin' }), {
-      status: 401,
-    });
-  }
+  // if (origin && allowedOrigins.includes(origin)) {
+  //   response.headers.set('Access-Control-Allow-Origin', origin);
+  //   response.headers.set(
+  //     'Access-Control-Allow-Methods',
+  //     'GET, POST, PUT, DELETE, OPTIONS'
+  //   );
+  //   response.headers.set(
+  //     'Access-Control-Allow-Headers',
+  //     'Content-Type, Authorization'
+  //   );
+  // } else {
+  //   return new NextResponse(JSON.stringify({ error: 'Invalid origin' }), {
+  //     status: 401,
+  //   });
+  // }
 
   // Handle preflight requests (OPTIONS method)
   if (req.method === 'OPTIONS') {

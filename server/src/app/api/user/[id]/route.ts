@@ -8,7 +8,7 @@ export const GET = async (
   try {
     const vkUserId = +params.id;
 
-    const user = await db.user.findUnique({ where: { vk_user_id: vkUserId } });
+    const user = await db.user.findUnique({ where: { vkUserId } });
 
     if (!user) {
       return createResponse({ status: 200 });
