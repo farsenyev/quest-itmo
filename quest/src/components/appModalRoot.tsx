@@ -22,7 +22,6 @@ import {
 import { useState } from "react";
 import { CreateUrlForEvent } from "../utils/createUrlForEvent";
 import { sendEventInfoToDB } from "../utils/sendEventInfoToDB";
-import "..//App.css";
 import { useEventContext } from "../contexts/eventContext";
 import { TEvent } from "../types/event";
 

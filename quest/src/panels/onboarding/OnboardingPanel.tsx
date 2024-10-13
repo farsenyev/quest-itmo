@@ -22,7 +22,7 @@ export const OnboardingPanel = (props: PanelProps) => {
             Icon: <FaUniversity size={96} className={styles["Icon"]} />,
             title: "Погрузись в мир ИТМО вместе с нашим приложением",
             subtitle:
-                "Знакомься с культурой университета, находи новые знакомства и становись частью ITMO Family.",
+                "Знакомься с культурой университета, находи новые связи и становись частью ITMO Family.",
             nextButton: (
                 <Button size="m" stretched onClick={() => setStep(1)}>
                     Продолжить
